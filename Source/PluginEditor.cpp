@@ -32,6 +32,7 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
 {
     const juce::ScopedLock myScopedLock(objectLock);
     currentParameter = Parameter::COUNT;
+    setSize(PluginWidth, 700);
 
     getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour::fromHSL(0, 0, 0, 0.0));
     getLookAndFeel().setColour(juce::Slider::trackColourId, ColourTrack);
@@ -42,8 +43,18 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     parameterReadout.setText(" ", juce::NotificationType::dontSendNotification);
     parameterReadout.setJustificationType(juce::Justification::centredRight);
     parameterReadout.setColour(juce::Label::ColourIds::textColourId, ColourLightBlue);
-    parameterReadout.setBounds(PluginWidth - 420, 635, 400, 32);
+    parameterReadout.setBounds(getWidth() - 420, 635, 400, 32);
     addAndMakeVisible(parameterReadout);
+
+    presetName.setFont(getFontLight(42));
+    presetName.setText(this->audioProcessor.getPresetName(), juce::NotificationType::dontSendNotification);
+    presetName.setJustificationType(juce::Justification::centred);
+    presetName.setColour(juce::Label::ColourIds::textColourId, ColourTitle);
+    presetName.setBounds(getWidth() / 2 - 300, 626, 600, 50);
+    presetName.addMouseListener(this, false);
+    presetName.setMouseCursor(juce::MouseCursor::PointingHandCursor);
+    addAndMakeVisible(presetName);
+    
 
     for (int i = 0; i < 4; i++)
     {
@@ -107,15 +118,24 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
 
     spinnersParams[0].setBounds(Panel2x + PanelPadding + w + 10, sy, sw, sh);
     attachParam(&spinnersParams[0], Parameter::EarlyDiffuseCount);
+    spinnersParams[0].Formatter = [](double val) { return FormatParameter(val, 32, Parameter::EarlyDiffuseCount); };
+
     spinnersParams[1].setBounds(Panel3x + PanelPadding + w + 10, sy, sw, sh);
     attachParam(&spinnersParams[1], Parameter::LateLineCount);
+    spinnersParams[1].Formatter = [](double val) { return FormatParameter(val, 32, Parameter::LateLineCount); };
+
     spinnersParams[2].setBounds(Panel3x + PanelPadding + 3*w + 10, sy, sw, sh);
     attachParam(&spinnersParams[2], Parameter::LateDiffuseCount);
+    spinnersParams[2].Formatter = [](double val) { return FormatParameter(val, 32, Parameter::LateDiffuseCount); };
+
+    spinnersParams[0].setMouseCursor(juce::MouseCursor::BottomEdgeResizeCursor);
+    spinnersParams[1].setMouseCursor(juce::MouseCursor::BottomEdgeResizeCursor);
+    spinnersParams[2].setMouseCursor(juce::MouseCursor::BottomEdgeResizeCursor);
+
     addAndMakeVisible(spinnersParams[0]);
     addAndMakeVisible(spinnersParams[1]);
     addAndMakeVisible(spinnersParams[2]);
-
-
+    
     spinToggleButtons[0].setBounds(Panel0x + PanelPadding + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[0], Parameter::Interpolation);
     spinToggleButtons[1].setBounds(Panel0x + PanelPadding + w + 10, sy, sw, sh);
@@ -128,8 +148,8 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
 
     spinToggleButtons[4].setBounds(Panel3x + PanelPadding + 0 * w + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[4], Parameter::LateMode);
-    spinToggleButtons[4].OffValue = "Pre";
-    spinToggleButtons[4].OnValue = "Post";
+    spinToggleButtons[4].OffValue = "Post";
+    spinToggleButtons[4].OnValue = "Pre";
     spinToggleButtons[5].setBounds(Panel3x + PanelPadding + 2 * w + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[5], Parameter::LateDiffuseEnabled);
 
@@ -141,9 +161,10 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     attachParam(&spinToggleButtons[8], Parameter::EqLowpassEnabled);
 
     for (int i = 0; i < 9; i++)
+    {
         addAndMakeVisible(spinToggleButtons[i]);
-
-    setSize(PluginWidth, 700);
+        spinToggleButtons[i].setMouseCursor(juce::MouseCursor::PointingHandCursor);
+    }
 
     pluginName.setText("Cloud Seed XT", juce::NotificationType::dontSendNotification);
     pluginName.setFont(getFontLight(70));
@@ -161,7 +182,7 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     
     startTimerHz(30);
 
-    setScaleFactor(0.75);
+    //setScaleFactor(0.75);
     // Adjust the About dialog to compensate for small scaling factor
     overlay.setTransform(juce::AffineTransform::scale(1.5, 1.5, getWidth() / 2, getHeight() / 2));
 }
@@ -195,6 +216,10 @@ void CloudSeedXTAudioProcessorEditor::attachParam(juce::ToggleButton* component,
 
 void CloudSeedXTAudioProcessorEditor::mouseEnter(const juce::MouseEvent& ev)
 {
+    if (ev.eventComponent == &presetName)
+        presetName.setColour(juce::Label::ColourIds::backgroundColourId, juce::Colour::fromRGB(240, 240, 245));
+    
+
     if (componentToParam.count(ev.eventComponent))
     {
         auto param = componentToParam[ev.eventComponent];
@@ -204,6 +229,9 @@ void CloudSeedXTAudioProcessorEditor::mouseEnter(const juce::MouseEvent& ev)
 
 void CloudSeedXTAudioProcessorEditor::mouseExit(const juce::MouseEvent& ev)
 {
+    if (ev.eventComponent == &presetName)
+        presetName.setColour(juce::Label::ColourIds::backgroundColourId, juce::Colours::transparentWhite);
+
     if (componentToParam.count(ev.eventComponent))
     {
         auto param = componentToParam[ev.eventComponent];
@@ -227,11 +255,12 @@ CloudSeedXTAudioProcessorEditor::~CloudSeedXTAudioProcessorEditor()
 //==============================================================================
 void CloudSeedXTAudioProcessorEditor::paint (juce::Graphics& g)
 {
-    g.fillAll(juce::Colour::fromRGB(252, 252, 252));
+    g.fillAll(ColourAlmostWhite);
 
     juce::ColourGradient grad(juce::Colour::fromRGB(9, 44, 93), 0, 100, juce::Colour::fromRGB(22, 48, 89), 0, 600, false);
     g.setGradientFill(grad);
-    g.fillRect(0, 100, 1765, 500);
+    g.fillRect(0, 100, getWidth(), 500);
+    drawNoise(g, 0, 100, getWidth(), 500);
 
     juce::ColourGradient gradTop(juce::Colour::fromFloatRGBA(0,0,0,0.3), 0, 100, juce::Colour::fromFloatRGBA(0,0,0,0), 0, 205, false);
     g.setGradientFill(gradTop);
@@ -242,7 +271,7 @@ void CloudSeedXTAudioProcessorEditor::paint (juce::Graphics& g)
     g.fillRoundedRectangle(Panel1x, 217, Panel1Width, 334, 3);
     g.fillRoundedRectangle(Panel2x, 217, Panel2Width, 334, 3);
     g.fillRoundedRectangle(Panel3x, 217, Panel3Width, 334, 3);
-    g.fillRoundedRectangle(Panel4x, 217, Panel4Width, 334, 3);
+    g.fillRoundedRectangle(Panel4x, 217, Panel4Width, 334, 3);   
 
     auto img = juce::Drawable::createFromImageData(BinaryData::logo_svg, BinaryData::logo_svgSize);
     img->drawWithin(g, juce::Rectangle<float>(20, 14, 350, 66), juce::RectanglePlacement::xLeft | juce::RectanglePlacement::yTop, 1.0);
@@ -280,42 +309,36 @@ void CloudSeedXTAudioProcessorEditor::timerCallback()
     auto value = audioProcessor.getParamByIdx((int)currentParameter);
     juce::String text = ParameterLabel[(int)currentParameter] + juce::String(": ") + FormatParameter(value, 32, (int)currentParameter);
     parameterReadout.setText(text, juce::NotificationType::dontSendNotification);
+}
 
-    //const juce::ScopedLock myScopedLock(objectLock);
+void CloudSeedXTAudioProcessorEditor::showAboutDialog()
+{
+    overlay.setComponent(&aboutDialog);
+    overlay.setVisible(true);
+}
 
-    //for (int idx = 0; idx < PARAM_COUNT; idx++)
-    //{
-    //    if (!audioProcessor.paramDirty[idx])
-    //        continue;
+void CloudSeedXTAudioProcessorEditor::reloadPresetName()
+{
+    presetName.setText(this->audioProcessor.getPresetName(), juce::NotificationType::dontSendNotification);
+}
 
-    //    float value = audioProcessor.getParamByIdx(idx);
-    //    float scaledValue = audioProcessor.getScaledParamByIdx(idx);
-    //    labelsRead[idx].setText(FormatParameter(value, 12, idx) + juce::String(" ") + juce::String(ParameterSuffix[idx]), juce::NotificationType::sendNotificationAsync);
+void CloudSeedXTAudioProcessorEditor::savePreset()
+{
+    auto cbInner = [this](std::string value, int btnIndex)
+    {
+        if (btnIndex == 0)
+        {
+            Presets::savePreset(&this->audioProcessor, value);
+            reloadPresetName();
+        }
 
-    //    if (idx == (int)Parameters::BandUpper)
-    //    {
-    //        curve.upperThres = scaledValue;
-    //        curve.lowerThres = audioProcessor.getScaledParamByIdx(0) - audioProcessor.getScaledParamByIdx(1);
-    //    }
-    //    else if (idx == (int)Parameters::BandGap) // bandgap -> lower thres
-    //        curve.lowerThres = audioProcessor.getScaledParamByIdx(0) - audioProcessor.getScaledParamByIdx(1);
-    //    else if (idx == (int)Parameters::Expansion)
-    //        curve.expansion = scaledValue;
-    //    else if (idx == (int)Parameters::Hysteresis)
-    //        curve.hysteresis = scaledValue;
+        overlay.setVisible(false);
+    };
 
-    //    audioProcessor.paramDirty[idx] = false;
-    //}
-
-
-    //auto signalInput = (120 + Clip<double>(audioProcessor.expanderL.GainSensorRO, -120.0, 0.0)) / 120.0;
-    //auto expansion = -fabsf(audioProcessor.expanderL.ExpansionRO / 50.0);
-
-    //InputMeter.setValue(signalInput);
-    //ReduceMeter.setValue(expansion);
-    //
-    //curve.inputLevel = audioProcessor.expanderL.GainSensorRO;
-    //curve.expansionLevel = audioProcessor.expanderL.ExpansionRO;
-    //curve.kneeRatio = audioProcessor.expanderL.Knee;
-    //curve.repaint();
+    std::vector<std::string> buttons;
+    buttons.push_back("Save");
+    buttons.push_back("Cancel");
+    dialog.setContent("Save Preset", buttons, cbInner);
+    overlay.setComponent(&dialog);
+    overlay.setVisible(true);
 }

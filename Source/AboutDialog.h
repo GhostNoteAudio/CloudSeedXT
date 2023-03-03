@@ -65,6 +65,8 @@ class AboutDialog : public juce::Component
 public:
     inline AboutDialog()
     {
+        bool isFreeware = Authentication::GetIsFreeware();
+
         pluginName.setFont(getFontLight(24));
         pluginName.setText("Cloud Seed XT " + juce::String(JucePlugin_VersionString) + "\nDesigned by Ghost Note Audio", juce::NotificationType::sendNotificationAsync);
         pluginName.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
@@ -79,12 +81,12 @@ public:
         webButton.callback = []() {juce::URL("http://www.ghostnoteaudio.uk").launchInDefaultBrowser(); };
 
         addAndMakeVisible(emailInput);
-        emailInput.setEditable(true);
+        emailInput.setEditable(!isFreeware);
         emailInput.setColour(juce::Label::backgroundColourId, juce::Colour::fromHSL(0, 0, 0.2, 1));
         emailInput.onTextChange = [this] {};
 
         addAndMakeVisible(licenseInput);
-        licenseInput.setEditable(true);
+        licenseInput.setEditable(!isFreeware);
         licenseInput.setColour(juce::Label::backgroundColourId, juce::Colour::fromHSL(0, 0, 0.2, 1));
         licenseInput.onTextChange = [this] {};
 
@@ -110,15 +112,22 @@ public:
         auto authData = Authentication::GetAuthData();
         if (authData.size() == 2)
         {
+            auto emailData = authData[0];
             auto licenseData = isAuth ? "****-****-****-****" : authData[1];
-            if (Authentication::GetIsFreeware())
+            if (isFreeware)
+            {
                 licenseData = "Free Plugin";
-            emailInput.setText(authData[0], juce::NotificationType::sendNotificationAsync);
+                emailData = "";
+            }
+
+            emailInput.setText(emailData, juce::NotificationType::sendNotificationAsync);
             licenseInput.setText(licenseData, juce::NotificationType::sendNotificationAsync);
         }
 
-        if (!Authentication::GetIsFreeware())
+        if (!isFreeware)
+        {
             addAndMakeVisible(saveButton);
+        }
 
         saveButton.setButtonText("Save");
         saveButton.setColour(juce::TextButton::ColourIds::buttonColourId, juce::Colour::fromHSL(0, 0, 0.2, 1));

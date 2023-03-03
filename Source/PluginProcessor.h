@@ -50,12 +50,15 @@ public:
 
     float getParamByIdx(int idx);
     float getScaledParamByIdx(int idx);
+    void setPresetName(juce::String presetName);
+    juce::String getPresetName();
 
     juce::AudioProcessorValueTreeState parameters;
     //Expander expanderL;
     //Expander expanderR;
 private:
     
+    juce::String presetName;
     float bufL[32768] = { 0 };
     float bufR[32768] = { 0 };
     float bufS[32768] = { 0 };

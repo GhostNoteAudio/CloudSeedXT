@@ -53,6 +53,8 @@ CloudSeedXTAudioProcessor::CloudSeedXTAudioProcessor() :
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
     parameters(*this, nullptr, juce::Identifier("CloudSeedXT"), createParameterLayout(this))
 {
+    presetName = "Default Preset";
+
     for (int i = 0; i < Parameter::COUNT; i++)
     {
         parameterValueChanged(i, getParamByIdx(i));
@@ -207,7 +209,7 @@ void CloudSeedXTAudioProcessor::getStateInformation (juce::MemoryBlock& destData
 {
     auto state = parameters.copyState();
     std::unique_ptr<juce::XmlElement> xml(state.createXml());
-    copyXmlToBinary(*xml, destData);    
+    copyXmlToBinary(*xml, destData);
 }
 
 void CloudSeedXTAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
@@ -271,6 +273,16 @@ float CloudSeedXTAudioProcessor::getParamByIdx(int idx)
 float CloudSeedXTAudioProcessor::getScaledParamByIdx(int idx)
 {
     return ScaleParam(parameters.getParameter(ParameterIds[idx])->getValue(), idx);
+}
+
+void CloudSeedXTAudioProcessor::setPresetName(juce::String presetName)
+{
+    this->presetName = presetName;
+}
+
+juce::String CloudSeedXTAudioProcessor::getPresetName()
+{
+    return this->presetName;
 }
 
 //==============================================================================

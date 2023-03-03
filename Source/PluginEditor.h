@@ -10,66 +10,12 @@
 #include "Stylers.h"
 #include <functional>
 #include "SpinToggle.h"
+#include "Presets.h"
+#include "InputDialog.h"
 
 typedef juce::AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef juce::AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 const int ResizeTabSize = 24;
-
-//class StereoButton : public juce::ToggleButton
-//{
-//public:
-//    inline StereoButton() : juce::ToggleButton("Stereo")
-//    {
-//
-//    }
-//
-//    inline ~StereoButton() override
-//    {
-//    }
-//
-//    inline void paintButton(juce::Graphics& g, bool highlighted, bool down) override
-//    {
-//        auto toggled = getToggleState();
-//        juce::Path p;
-//        auto value = toggled ? 0.6f : 0.3f;
-//        value = value + highlighted * 0.15;
-//        g.beginTransparencyLayer(value);
-//        g.setColour(juce::Colour::fromFloatRGBA(0, 0, 0, 1));
-//        g.fillEllipse(getHeight() / 2 + 1, 1, getHeight() - 2, getHeight() - 2);
-//        g.drawEllipse(1.75, 1.75, getHeight() - 3.5, getHeight() - 3.5, 1.5);
-//        g.endTransparencyLayer();
-//    }
-//
-//    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(StereoButton)
-//};
-
-//class AuxButton : public juce::ToggleButton
-//{
-//public:
-//    inline AuxButton() : juce::ToggleButton("AUX")
-//    {
-//
-//    }
-//
-//    inline ~AuxButton() override
-//    {
-//    }
-//
-//    inline void paintButton(juce::Graphics& g, bool highlighted, bool down) override
-//    {
-//        auto toggled = getToggleState();
-//        juce::Path p;
-//        auto value = toggled ? 0.6f : 0.3f;
-//        value = value + highlighted * 0.15;
-//        g.beginTransparencyLayer(value);
-//        g.setColour(juce::Colour::fromFloatRGBA(0, 0, 0, 1));
-//        g.setFont(getFontSemibold(22));
-//        g.drawText("AUX", 1, 1, getWidth() - 2, getHeight() - 2, false);
-//        g.endTransparencyLayer();
-//    }
-//
-//    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AuxButton)
-//};
 
 class CloudSeedXTAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer, public juce::MouseListener
 {
@@ -102,12 +48,21 @@ public:
 
     inline void mouseDown(const juce::MouseEvent& event) override
     {
+        if (event.eventComponent == &presetName)
+        {
+            Presets::showPresetMenu(
+                &this->audioProcessor, 
+                [this]() {this->reloadPresetName(); }, 
+                [this]() {this->savePreset(); }
+            );
+        }
+
         if (event.eventComponent != this)
             return;
 
         if (event.x < 320 && event.y <= 100)
         {
-            overlay.setVisible(true);
+            showAboutDialog();
         }
 
         if (event.x + event.y >= getWidth() + getHeight() - ResizeTabSize)
@@ -124,6 +79,11 @@ public:
     virtual void timerCallback() override;
 
 private:
+
+    void showAboutDialog();
+    void reloadPresetName();
+    void savePreset();
+
     CloudSeedXTAudioProcessor& audioProcessor;
     int currentParameter;
     juce::CriticalSection objectLock;
@@ -139,12 +99,13 @@ private:
     std::unique_ptr<SliderAttachment> attachments[Parameter::COUNT];
     std::unique_ptr<ButtonAttachment> buttonAttachments[Parameter::COUNT];
     
+    InputDialog dialog;
     juce::Label pluginName;
-    juce::Label demoStatus;
     juce::Label parameterReadout;
+    juce::Label presetName;
     ModalOverlay overlay;
     AboutDialog aboutDialog;
-    bool scaleBig = false;
+    bool scaleBig = true;
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CloudSeedXTAudioProcessorEditor)

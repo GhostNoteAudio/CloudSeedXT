@@ -44,6 +44,9 @@
             resource="1" file="Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf"/>
     </GROUP>
     <GROUP id="{EB45CFC1-16D6-A877-5A89-0D37B54FF64B}" name="Source">
+      <FILE id="Wr5mwj" name="InputDialog.h" compile="0" resource="0" file="Source/InputDialog.h"/>
+      <FILE id="niRPfx" name="RoundedPanel.h" compile="0" resource="0" file="Source/RoundedPanel.h"/>
+      <FILE id="eYLTtc" name="Presets.h" compile="0" resource="0" file="Source/Presets.h"/>
       <FILE id="KxVtV2" name="SpinToggle.h" compile="0" resource="0" file="Source/SpinToggle.h"/>
       <FILE id="vXodax" name="Stylers.h" compile="0" resource="0" file="Source/Stylers.h"/>
       <FILE id="oFdoca" name="Spinner.h" compile="0" resource="0" file="Source/Spinner.h"/>

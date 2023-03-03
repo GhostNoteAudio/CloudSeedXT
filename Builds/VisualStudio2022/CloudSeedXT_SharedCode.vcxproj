@@ -2316,6 +2316,9 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\InputDialog.h"/>
+    <ClInclude Include="..\..\Source\RoundedPanel.h"/>
+    <ClInclude Include="..\..\Source\Presets.h"/>
     <ClInclude Include="..\..\Source\SpinToggle.h"/>
     <ClInclude Include="..\..\Source\Stylers.h"/>
     <ClInclude Include="..\..\Source\Spinner.h"/>

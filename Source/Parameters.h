@@ -164,7 +164,7 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
     case Parameter::EqHighShelfEnabled:
     case Parameter::EqLowpassEnabled:
     case Parameter::EarlyDiffuseEnabled:
-        return ScaleParam(val, paramId) == 1 ? "Active" : "Disabled";
+        return ScaleParam(val, paramId) == 1 ? "Enabled" : "Disabled";
 
     case Parameter::InputMix:
     case Parameter::EarlyDiffuseFeedback:

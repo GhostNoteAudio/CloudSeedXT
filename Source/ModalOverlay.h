@@ -35,6 +35,11 @@ public:
 
 	inline void setComponent(Component* c)
 	{
+		if (this->component != nullptr)
+		{
+			removeAllChildren();
+		}
+
 		this->component = c;
 		addAndMakeVisible(c);
 		component->setCentreRelative(0.5f, 0.5f);
