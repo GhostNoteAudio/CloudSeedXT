@@ -66,7 +66,7 @@ namespace Cloudseed
 		{
 			while (bufSize > 0)
 			{
-				int subBufSize = bufSize > 64 ? 64 : bufSize;
+				int subBufSize = bufSize > BUFFER_SIZE ? BUFFER_SIZE : bufSize;
 				ProcessChunk(inL, inR, outL, outR, subBufSize);
 				inL = &inL[subBufSize];
 				inR = &inR[subBufSize];

@@ -25,6 +25,10 @@ const int Panel3Width = 2 * PanelPadding + 4 * KnobSpacing;
 const int Panel4x = Panel3x + Panel3Width + PanelSpacing;
 const int Panel4Width = 2 * PanelPadding + 3 * KnobSpacing;
 const int PluginWidth = Panel4x + Panel4Width + 20;
+const int PluginHeight = 700;
+
+// global variable, affects all plugin instances, is retained until process exits
+bool pluginScaleLarge = false;
 
 //==============================================================================
 CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAudioProcessor& p)
@@ -32,11 +36,8 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
 {
     const juce::ScopedLock myScopedLock(objectLock);
     currentParameter = Parameter::COUNT;
-    //setScaleFactor(0.75);
-    setSize(PluginWidth, 700);
-    setResizable(true, true);
+    setSize(PluginWidth, PluginHeight);
     
-
     getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour::fromHSL(0, 0, 0, 0.0));
     getLookAndFeel().setColour(juce::Slider::trackColourId, ColourTrack);
     getLookAndFeel().setColour(juce::Slider::thumbColourId, ColourPrimary);
@@ -46,14 +47,14 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     parameterReadout.setText(" ", juce::NotificationType::dontSendNotification);
     parameterReadout.setJustificationType(juce::Justification::centredRight);
     parameterReadout.setColour(juce::Label::ColourIds::textColourId, ColourLightBlue);
-    parameterReadout.setBounds(getWidth() - 420, 635, 400, 32);
+    parameterReadout.setBounds(PluginWidth - 420, 635, 400, 32);
     addAndMakeVisible(parameterReadout);
 
     presetName.setFont(getFontLight(42));
     presetName.setText(this->audioProcessor.getPresetName(), juce::NotificationType::dontSendNotification);
     presetName.setJustificationType(juce::Justification::centred);
     presetName.setColour(juce::Label::ColourIds::textColourId, ColourTitle);
-    presetName.setBounds(getWidth() / 2 - 300, 626, 600, 50);
+    presetName.setBounds(PluginWidth / 2 - 300, 626, 600, 50);
     presetName.addMouseListener(this, false);
     presetName.setMouseCursor(juce::MouseCursor::PointingHandCursor);
     addAndMakeVisible(presetName);
@@ -176,48 +177,113 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     pluginName.setFont(getFontLight(70));
     pluginName.setJustificationType(juce::Justification::centredTop);
     pluginName.setColour(juce::Label::ColourIds::textColourId, ColourTitle);
-    pluginName.setBounds(getWidth()/2 - 300, 10, 600, 70);
+    pluginName.setBounds(PluginWidth/2 - 300, 10, 600, 70);
     addAndMakeVisible(pluginName);
 
     aboutDialog.setBounds(0, 0, 550, 180);
     aboutDialog.SetOverlay(&overlay);
     overlay.setComponent(&aboutDialog);
-    overlay.setBounds(0, 0, getWidth(), getHeight());
+    overlay.setBounds(0, 0, PluginWidth, PluginHeight);
     addAndMakeVisible(overlay);
     overlay.setVisible(false);
     
     startTimerHz(30);
 
     // Adjust the About dialog to compensate for small scaling factor
-    overlay.setTransform(juce::AffineTransform::scale(1.5, 1.5, getWidth() / 2, getHeight() / 2));
-    repaint();
+    overlay.setTransform(juce::AffineTransform::scale(1.5, 1.5, PluginWidth / 2, PluginHeight / 2));
 }
 
-void CloudSeedXTAudioProcessorEditor::addKnobLabels()
+CloudSeedXTAudioProcessorEditor::~CloudSeedXTAudioProcessorEditor()
 {
-    for (int i = 0; i < 28; i++)
+    stopTimer();
     {
-        auto knob = &this->knobs[i];
-        int param = componentToParam[knob];
-        styleKnobLabel(&knobLabels[i]);
-        knobLabels[i].setText(ParameterLabel[param], juce::NotificationType::dontSendNotification);
-        knobLabels[i].setBounds(knob->getPosition().x - 10, knob->getPosition().y + 74, knob->getWidth() + 20, 30);
-        addAndMakeVisible(knobLabels[i]);
+        const juce::ScopedLock myScopedLock(objectLock);
+        // blocks until timer callback is done
     }
 }
 
-void CloudSeedXTAudioProcessorEditor::attachParam(juce::Slider* component, int parameter)
+void CloudSeedXTAudioProcessorEditor::paint(juce::Graphics& g)
 {
-    attachments[parameter].reset(new SliderAttachment(audioProcessor.parameters, juce::String(ParameterIds[parameter]), *component));
-    component->addMouseListener(this, false);
-    componentToParam[component] = parameter;
+    g.fillAll(ColourAlmostWhite);
+
+    juce::ColourGradient grad(juce::Colour::fromRGB(9, 44, 93), 0, 100, juce::Colour::fromRGB(22, 48, 89), 0, 600, false);
+    g.setGradientFill(grad);
+    g.fillRect(0, 100, PluginWidth, 500);
+    drawNoise(g, 0, 100, PluginWidth, 500);
+
+    juce::ColourGradient gradTop(juce::Colour::fromFloatRGBA(0, 0, 0, 0.3), 0, 100, juce::Colour::fromFloatRGBA(0, 0, 0, 0), 0, 205, false);
+    g.setGradientFill(gradTop);
+    g.fillRect(0, 100, PluginWidth, 105);
+
+    g.setColour(juce::Colour::fromFloatRGBA(0.4, 0.55, 0.85, 0.15));
+    g.fillRoundedRectangle(Panel0x, 217, Panel0Width, 334, 3);
+    g.fillRoundedRectangle(Panel1x, 217, Panel1Width, 334, 3);
+    g.fillRoundedRectangle(Panel2x, 217, Panel2Width, 334, 3);
+    g.fillRoundedRectangle(Panel3x, 217, Panel3Width, 334, 3);
+    g.fillRoundedRectangle(Panel4x, 217, Panel4Width, 334, 3);
+
+    auto img = juce::Drawable::createFromImageData(BinaryData::logo_svg, BinaryData::logo_svgSize);
+    img->drawWithin(g, juce::Rectangle<float>(20, 14, 350, 66), juce::RectanglePlacement::xLeft | juce::RectanglePlacement::yTop, 1.0);
+
+    g.setColour(ColourLightBlue);
+    g.setFont(getFontLight(50));
+    g.drawText("Main", Panel0x, 196, 100, 20, juce::Justification::bottomLeft, false);
+    g.drawText("Taps", Panel1x, 196, 100, 20, juce::Justification::bottomLeft, false);
+    g.drawText("Reflections", Panel2x, 196, 200, 20, juce::Justification::bottomLeft, false);
+    g.drawText("Late Reverberation", Panel3x, 196, 450, 20, juce::Justification::bottomLeft, false);
+    g.drawText("Equalization", Panel4x, 196, 350, 20, juce::Justification::bottomLeft, false);
+
+    juce::Path p;
+    p.startNewSubPath(PluginWidth - ResizeTabSize, PluginHeight);
+    p.lineTo(PluginWidth, PluginHeight - ResizeTabSize);
+    p.lineTo(PluginWidth, PluginHeight);
+    p.closeSubPath();
+    g.setColour(juce::Colour::fromHSL(0, 0, 0, 0.15));
+    g.fillPath(p);
 }
 
-void CloudSeedXTAudioProcessorEditor::attachParam(juce::ToggleButton* component, int parameter)
+void CloudSeedXTAudioProcessorEditor::resized()
 {
-    buttonAttachments[parameter].reset(new ButtonAttachment(audioProcessor.parameters, juce::String(ParameterIds[parameter]), *component));
-    component->addMouseListener(this, false);
-    componentToParam[component] = parameter;
+    overlay.setBounds(0, 0, getWidth(), getHeight());
+}
+
+void CloudSeedXTAudioProcessorEditor::mouseMove(const juce::MouseEvent& event)
+{
+    if (event.eventComponent != this)
+        return;
+
+    if (event.x < 320 && event.y <= 100)
+        setMouseCursor(juce::MouseCursor::PointingHandCursor);
+    else if (event.x + event.y >= getWidth() + getHeight() - ResizeTabSize)
+        setMouseCursor(juce::MouseCursor::PointingHandCursor);
+    else
+        setMouseCursor(juce::MouseCursor::NormalCursor);
+}
+
+void CloudSeedXTAudioProcessorEditor::mouseDown(const juce::MouseEvent& event)
+{
+    if (event.eventComponent == &presetName)
+    {
+        Presets::showPresetMenu(
+            &this->audioProcessor,
+            [this]() {this->reloadPresetName(); },
+            [this]() {this->savePreset(); }
+        );
+    }
+
+    if (event.eventComponent != this)
+        return;
+
+    if (event.x < 320 && event.y <= 100)
+    {
+        showAboutDialog();
+    }
+
+    if (event.x + event.y >= getWidth() + getHeight() - ResizeTabSize)
+    {
+        pluginScaleLarge = !pluginScaleLarge;
+        applyEditorScaling();
+    }
 }
 
 void CloudSeedXTAudioProcessorEditor::mouseEnter(const juce::MouseEvent& ev)
@@ -248,61 +314,6 @@ void CloudSeedXTAudioProcessorEditor::mouseExit(const juce::MouseEvent& ev)
     }
 }
 
-CloudSeedXTAudioProcessorEditor::~CloudSeedXTAudioProcessorEditor()
-{
-    stopTimer();
-
-    {
-        const juce::ScopedLock myScopedLock(objectLock);
-        // blocks until timer callback is done
-    }
-}
-
-//==============================================================================
-void CloudSeedXTAudioProcessorEditor::paint (juce::Graphics& g)
-{
-    g.fillAll(ColourAlmostWhite);
-
-    juce::ColourGradient grad(juce::Colour::fromRGB(9, 44, 93), 0, 100, juce::Colour::fromRGB(22, 48, 89), 0, 600, false);
-    g.setGradientFill(grad);
-    g.fillRect(0, 100, getWidth(), 500);
-    drawNoise(g, 0, 100, getWidth(), 500);
-
-    juce::ColourGradient gradTop(juce::Colour::fromFloatRGBA(0,0,0,0.3), 0, 100, juce::Colour::fromFloatRGBA(0,0,0,0), 0, 205, false);
-    g.setGradientFill(gradTop);
-    g.fillRect(0, 100, 1765, 105);
-
-    g.setColour(juce::Colour::fromFloatRGBA(0.4,0.55,0.85,0.15));
-    g.fillRoundedRectangle(Panel0x, 217, Panel0Width, 334, 3);
-    g.fillRoundedRectangle(Panel1x, 217, Panel1Width, 334, 3);
-    g.fillRoundedRectangle(Panel2x, 217, Panel2Width, 334, 3);
-    g.fillRoundedRectangle(Panel3x, 217, Panel3Width, 334, 3);
-    g.fillRoundedRectangle(Panel4x, 217, Panel4Width, 334, 3);   
-
-    auto img = juce::Drawable::createFromImageData(BinaryData::logo_svg, BinaryData::logo_svgSize);
-    img->drawWithin(g, juce::Rectangle<float>(20, 14, 350, 66), juce::RectanglePlacement::xLeft | juce::RectanglePlacement::yTop, 1.0);
-
-    g.setColour(ColourLightBlue);
-    g.setFont(getFontLight(50));
-    g.drawText("Main", Panel0x, 196, 100, 20, juce::Justification::bottomLeft, false);
-    g.drawText("Taps", Panel1x, 196, 100, 20, juce::Justification::bottomLeft, false);
-    g.drawText("Reflections", Panel2x, 196, 200, 20, juce::Justification::bottomLeft, false);
-    g.drawText("Late Reverberation", Panel3x, 196, 450, 20, juce::Justification::bottomLeft, false);
-    g.drawText("Equalization", Panel4x, 196, 350, 20, juce::Justification::bottomLeft, false);
-
-    juce::Path p;
-    p.startNewSubPath(getWidth() - ResizeTabSize, getHeight());
-    p.lineTo(getWidth(), getHeight() - ResizeTabSize);
-    p.lineTo(getWidth(), getHeight());
-    p.closeSubPath();
-    g.setColour(juce::Colour::fromHSL(0, 0, 0, 0.15));
-    g.fillPath(p);
-}
-
-void CloudSeedXTAudioProcessorEditor::resized()
-{
-    overlay.setBounds(0, 0, getWidth(), getHeight());
-}
 
 void CloudSeedXTAudioProcessorEditor::timerCallback()
 {
@@ -315,6 +326,33 @@ void CloudSeedXTAudioProcessorEditor::timerCallback()
     auto value = audioProcessor.getParamByIdx((int)currentParameter);
     juce::String text = ParameterLabel[(int)currentParameter] + juce::String(": ") + FormatParameter(value, 32, (int)currentParameter);
     parameterReadout.setText(text, juce::NotificationType::dontSendNotification);
+}
+
+void CloudSeedXTAudioProcessorEditor::attachParam(juce::Slider* component, int parameter)
+{
+    attachments[parameter].reset(new SliderAttachment(audioProcessor.parameters, juce::String(ParameterIds[parameter]), *component));
+    component->addMouseListener(this, false);
+    componentToParam[component] = parameter;
+}
+
+void CloudSeedXTAudioProcessorEditor::attachParam(juce::ToggleButton* component, int parameter)
+{
+    buttonAttachments[parameter].reset(new ButtonAttachment(audioProcessor.parameters, juce::String(ParameterIds[parameter]), *component));
+    component->addMouseListener(this, false);
+    componentToParam[component] = parameter;
+}
+
+void CloudSeedXTAudioProcessorEditor::addKnobLabels()
+{
+    for (int i = 0; i < 28; i++)
+    {
+        auto knob = &this->knobs[i];
+        int param = componentToParam[knob];
+        styleKnobLabel(&knobLabels[i]);
+        knobLabels[i].setText(ParameterLabel[param], juce::NotificationType::dontSendNotification);
+        knobLabels[i].setBounds(knob->getPosition().x - 10, knob->getPosition().y + 74, knob->getWidth() + 20, 30);
+        addAndMakeVisible(knobLabels[i]);
+    }
 }
 
 void CloudSeedXTAudioProcessorEditor::showAboutDialog()
@@ -347,4 +385,14 @@ void CloudSeedXTAudioProcessorEditor::savePreset()
     dialog.setContent("Save Preset", buttons, cbInner);
     overlay.setComponent(&dialog);
     overlay.setVisible(true);
+}
+
+void CloudSeedXTAudioProcessorEditor::applyEditorScaling()
+{
+    if (pluginScaleLarge)
+        setScaleFactor(1.0);
+    else
+        setScaleFactor(0.75);
+
+    repaint();
 }
