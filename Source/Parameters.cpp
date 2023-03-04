@@ -11,6 +11,7 @@ const char* ParameterIds[Parameter::COUNT] = {
     "EarlyOut",
     "LateOut",
 
+    "TapEnabled",
     "TapCount",
     "TapDecay",
     "TapPredelay",
@@ -63,6 +64,7 @@ const char* ParameterLabel[Parameter::COUNT] = {
     "Early Out",
     "Late Out",
 
+    "Multitap Enabled",
     "Count",
     "Decay",
     "Pre-delay",
@@ -115,6 +117,7 @@ const char* ParameterSuffix[Parameter::COUNT] = {
     "dB", // EarlyOut,
     "dB", // LateOut,
 
+    "", // TapEnabled,
     "", // TapCount,
     "ms", // TapDecay,
     "ms", // TapPredelay,

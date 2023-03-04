@@ -2964,7 +2964,7 @@
     <ClInclude Include="..\..\Source\DSP\ModulatedDelay.h">
       <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\DSP\MultitapDiffuser.h">
+    <ClInclude Include="..\..\Source\DSP\MultitapDelay.h">
       <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DSP\RandomBuffer.h">

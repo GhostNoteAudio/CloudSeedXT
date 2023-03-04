@@ -14,7 +14,6 @@ namespace Cloudseed
 		static const int DelayBufferSize = 192000 * 2;
 
 		float delayBuffer[DelayBufferSize] = { 0 };
-		float output[BUFFER_SIZE] = { 0 };
 		int writeIndex;
 		int readIndexA;
 		int readIndexB;
@@ -48,14 +47,9 @@ namespace Cloudseed
 			Update();
 		}
 
-		float* GetOutput()
+		void Process(float* input, float* output, int bufSize)
 		{
-			return output;
-		}
-
-		void Process(float* input, int sampleCount)
-		{
-			for (int i = 0; i < sampleCount; i++)
+			for (int i = 0; i < bufSize; i++)
 			{
 				if (samplesProcessed % ModulationUpdateRate == 0)
 					Update();
@@ -76,7 +70,6 @@ namespace Cloudseed
 		void ClearBuffers()
 		{
 			Utils::ZeroBuffer(delayBuffer, DelayBufferSize);
-			Utils::ZeroBuffer(output, BUFFER_SIZE);
 		}
 
 

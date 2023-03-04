@@ -155,7 +155,7 @@
  #define JucePlugin_ARAFactoryID           "com.GhostNoteAudio.CloudSeedXT.factory"
 #endif
 #ifndef  JucePlugin_ARADocumentArchiveID
- #define JucePlugin_ARADocumentArchiveID   "com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.3.5.0"
+ #define JucePlugin_ARADocumentArchiveID   "com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.1.0.0"
 #endif
 #ifndef  JucePlugin_ARACompatibleArchiveIDs
  #define JucePlugin_ARACompatibleArchiveIDs  ""

@@ -32,7 +32,10 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
 {
     const juce::ScopedLock myScopedLock(objectLock);
     currentParameter = Parameter::COUNT;
+    //setScaleFactor(0.75);
     setSize(PluginWidth, 700);
+    setResizable(true, true);
+    
 
     getLookAndFeel().setColour(juce::Slider::rotarySliderFillColourId, juce::Colour::fromHSL(0, 0, 0, 0.0));
     getLookAndFeel().setColour(juce::Slider::trackColourId, ColourTrack);
@@ -143,24 +146,27 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     spinToggleButtons[2].setBounds(Panel0x + PanelPadding + 2*w + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[2], Parameter::HighCutEnabled);
 
-    spinToggleButtons[3].setBounds(Panel2x + PanelPadding + 0 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[3], Parameter::EarlyDiffuseEnabled);
+    spinToggleButtons[3].setBounds(Panel1x + PanelPadding + 0 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[3], Parameter::TapEnabled);
 
-    spinToggleButtons[4].setBounds(Panel3x + PanelPadding + 0 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[4], Parameter::LateMode);
-    spinToggleButtons[4].OffValue = "Post";
-    spinToggleButtons[4].OnValue = "Pre";
-    spinToggleButtons[5].setBounds(Panel3x + PanelPadding + 2 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[5], Parameter::LateDiffuseEnabled);
+    spinToggleButtons[4].setBounds(Panel2x + PanelPadding + 0 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[4], Parameter::EarlyDiffuseEnabled);
 
-    spinToggleButtons[6].setBounds(Panel4x + PanelPadding + 0 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[6], Parameter::EqLowShelfEnabled);
-    spinToggleButtons[7].setBounds(Panel4x + PanelPadding + 1 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[7], Parameter::EqHighShelfEnabled);
-    spinToggleButtons[8].setBounds(Panel4x + PanelPadding + 2 * w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[8], Parameter::EqLowpassEnabled);
+    spinToggleButtons[5].setBounds(Panel3x + PanelPadding + 0 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[5], Parameter::LateMode);
+    spinToggleButtons[5].OffValue = "Pre";
+    spinToggleButtons[5].OnValue = "Post";
+    spinToggleButtons[6].setBounds(Panel3x + PanelPadding + 2 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[6], Parameter::LateDiffuseEnabled);
 
-    for (int i = 0; i < 9; i++)
+    spinToggleButtons[7].setBounds(Panel4x + PanelPadding + 0 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[7], Parameter::EqLowShelfEnabled);
+    spinToggleButtons[8].setBounds(Panel4x + PanelPadding + 1 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[8], Parameter::EqHighShelfEnabled);
+    spinToggleButtons[9].setBounds(Panel4x + PanelPadding + 2 * w + 10, sy, sw, sh);
+    attachParam(&spinToggleButtons[9], Parameter::EqLowpassEnabled);
+
+    for (int i = 0; i < 10; i++)
     {
         addAndMakeVisible(spinToggleButtons[i]);
         spinToggleButtons[i].setMouseCursor(juce::MouseCursor::PointingHandCursor);
@@ -182,9 +188,9 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     
     startTimerHz(30);
 
-    setScaleFactor(0.75);
     // Adjust the About dialog to compensate for small scaling factor
     overlay.setTransform(juce::AffineTransform::scale(1.5, 1.5, getWidth() / 2, getHeight() / 2));
+    repaint();
 }
 
 void CloudSeedXTAudioProcessorEditor::addKnobLabels()

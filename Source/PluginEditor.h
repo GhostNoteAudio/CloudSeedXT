@@ -17,7 +17,7 @@ typedef juce::AudioProcessorValueTreeState::SliderAttachment SliderAttachment;
 typedef juce::AudioProcessorValueTreeState::ButtonAttachment ButtonAttachment;
 const int ResizeTabSize = 24;
 
-class CloudSeedXTAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer, public juce::MouseListener
+class CloudSeedXTAudioProcessorEditor : public juce::AudioProcessorEditor, public juce::Timer//, public juce::MouseListener
 {
 public:
     CloudSeedXTAudioProcessorEditor (CloudSeedXTAudioProcessor&);
@@ -65,13 +65,13 @@ public:
             showAboutDialog();
         }
 
-        if (event.x + event.y >= getWidth() + getHeight() - ResizeTabSize)
-            scaleBig = !scaleBig;
+        //if (event.x + event.y >= getWidth() + getHeight() - ResizeTabSize)
+        //    scaleBig = !scaleBig;
 
-        if (scaleBig)
-            setScaleFactor(1.0);
-        else
-            setScaleFactor(0.75);
+        //if (scaleBig)
+        //    setScaleFactor(1.0);
+        //else
+        //    setScaleFactor(0.75);
 
         repaint();
     }
@@ -94,7 +94,7 @@ private:
     juce::Label knobLabels[28];
 
     Spinner spinnersParams[3];
-    SpinToggleButton spinToggleButtons[9];
+    SpinToggleButton spinToggleButtons[10];
 
     std::unique_ptr<SliderAttachment> attachments[Parameter::COUNT];
     std::unique_ptr<ButtonAttachment> buttonAttachments[Parameter::COUNT];

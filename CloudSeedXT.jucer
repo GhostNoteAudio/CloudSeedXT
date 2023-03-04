@@ -57,8 +57,7 @@
               file="Source/DSP/ModulatedAllpass.h"/>
         <FILE id="h9M82W" name="ModulatedDelay.h" compile="0" resource="0"
               file="Source/DSP/ModulatedDelay.h"/>
-        <FILE id="LN9v0S" name="MultitapDiffuser.h" compile="0" resource="0"
-              file="Source/DSP/MultitapDiffuser.h"/>
+        <FILE id="YxDLRn" name="MultitapDelay.h" compile="0" resource="0" file="Source/DSP/MultitapDelay.h"/>
         <FILE id="pWpcAg" name="RandomBuffer.cpp" compile="1" resource="0"
               file="Source/DSP/RandomBuffer.cpp"/>
         <FILE id="B2PLuw" name="RandomBuffer.h" compile="0" resource="0" file="Source/DSP/RandomBuffer.h"/>

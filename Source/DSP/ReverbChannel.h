@@ -4,7 +4,7 @@
 #include <memory>
 #include "../Parameters.h"
 #include "ModulatedDelay.h"
-#include "MultitapDiffuser.h"
+#include "MultitapDelay.h"
 #include "RandomBuffer.h"
 #include "Lp1.h"
 #include "Hp1.h"
@@ -38,9 +38,6 @@ namespace Cloudseed
 		Hp1 highPass;
 		Lp1 lowPass;
 
-		float tempBuffer[BUFFER_SIZE] = { 0 };
-		float outBuffer[BUFFER_SIZE] = { 0 };
-
 		int delayLineSeed;
 		int postDiffusionSeed;
 
@@ -49,6 +46,7 @@ namespace Cloudseed
 
 		bool lowCutEnabled;
 		bool highCutEnabled;
+		bool multitapEnabled;
 		bool diffuserEnabled;
 		float inputMix;
 		float dryOut;
@@ -95,11 +93,6 @@ namespace Cloudseed
 				SetParameter(i, paramsScaled[i]);
 		}
 
-		float* GetOutput()
-		{
-			return outBuffer;
-		}
-
 		void SetParameter(int para, double scaledValue)
 		{
 			paramsScaled[para] = scaledValue;
@@ -112,9 +105,13 @@ namespace Cloudseed
 				break;
 			case Parameter::LowCutEnabled:
 				lowCutEnabled = scaledValue >= 0.5;
+				if (lowCutEnabled)
+					highPass.ClearBuffers();
 				break;
 			case Parameter::HighCutEnabled:
 				highCutEnabled = scaledValue >= 0.5;
+				if (highCutEnabled)
+					lowPass.ClearBuffers();
 				break;
 			case Parameter::InputMix:
 				inputMix = scaledValue;
@@ -136,6 +133,14 @@ namespace Cloudseed
 				break;
 
 
+			case Parameter::TapEnabled:
+			{
+				auto newVal = scaledValue >= 0.5;
+				if (newVal != multitapEnabled)
+					multitap.ClearBuffers();
+				multitapEnabled = newVal;
+				break;
+			}
 			case Parameter::TapCount:
 				multitap.SetTapCount((int)scaledValue);
 				break;
@@ -178,7 +183,7 @@ namespace Cloudseed
 
 			case Parameter::LateMode:
 				for (int i = 0; i < TotalLineCount; i++)
-					lines[i].LateStageTap = scaledValue >= 0.5;
+					lines[i].TapPostDiffuser = scaledValue >= 0.5;
 				break;
 			case Parameter::LateLineCount:
 				lineCount = (int)scaledValue;
@@ -284,8 +289,13 @@ namespace Cloudseed
 			}
 		}
 
-		void Process(float* input, int bufSize)
+		void Process(float* input, float* output, int bufSize)
 		{
+			float tempBuffer[BUFFER_SIZE];
+			float earlyOutBuffer[BUFFER_SIZE];
+			float lineOutBuffer[BUFFER_SIZE];
+			float lineSumBuffer[BUFFER_SIZE];
+
 			Utils::Copy(tempBuffer, input, bufSize);
 
 			if (lowCutEnabled)
@@ -302,59 +312,35 @@ namespace Cloudseed
 					tempBuffer[i] = 0;
 			}
 
-			preDelay.Process(tempBuffer, bufSize);
-			multitap.Process(preDelay.GetOutput(), bufSize);
-
-			auto earlyOutStage = diffuserEnabled ? diffuser.GetOutput() : multitap.GetOutput();
-
+			preDelay.Process(tempBuffer, tempBuffer, bufSize);
+			if (multitapEnabled)
+				multitap.Process(tempBuffer, tempBuffer, bufSize);
 			if (diffuserEnabled)
-			{
-				diffuser.Process(multitap.GetOutput(), bufSize);
-				Utils::Copy(tempBuffer, diffuser.GetOutput(), bufSize);
-			}
-			else
-			{
-				Utils::Copy(tempBuffer, multitap.GetOutput(), bufSize);
-			}
-
-			for (int i = 0; i < lineCount; i++)
-				lines[i].Process(tempBuffer, bufSize);
-
+				diffuser.Process(tempBuffer, tempBuffer, bufSize);
+			
+			Utils::Copy(earlyOutBuffer, tempBuffer, bufSize);
+			Utils::ZeroBuffer(lineSumBuffer, bufSize);
 			for (int i = 0; i < lineCount; i++)
 			{
-				auto buf = lines[i].GetOutput();
-
-				if (i == 0)
-				{
-					for (int j = 0; j < bufSize; j++)
-						tempBuffer[j] = buf[j];
-				}
-				else
-				{
-					for (int j = 0; j < bufSize; j++)
-						tempBuffer[j] += buf[j];
-				}
+				lines[i].Process(tempBuffer, lineOutBuffer, bufSize);
+				Utils::Mix(lineSumBuffer, lineOutBuffer, 1.0f, bufSize);
 			}
 
 			auto perLineGain = GetPerLineGain();
-			Utils::Gain(tempBuffer, perLineGain, bufSize);
+			Utils::Gain(lineSumBuffer, perLineGain, bufSize);
 
 			for (int i = 0; i < bufSize; i++)
 			{
-				outBuffer[i] = dryOut * input[i]
-					+ earlyOut * earlyOutStage[i]
-					+ lineOut * tempBuffer[i];
+				output[i] = dryOut * input[i]
+					+ earlyOut * earlyOutBuffer[i]
+					+ lineOut * lineSumBuffer[i];
 			}
 		}
 
 		void ClearBuffers()
 		{
-			Utils::ZeroBuffer(tempBuffer, BUFFER_SIZE);
-			Utils::ZeroBuffer(outBuffer, BUFFER_SIZE);
-
-			lowPass.Output = 0;
-			highPass.Output = 0;
-
+			lowPass.ClearBuffers();
+			highPass.ClearBuffers();
 			preDelay.ClearBuffers();
 			multitap.ClearBuffers();
 			diffuser.ClearBuffers();

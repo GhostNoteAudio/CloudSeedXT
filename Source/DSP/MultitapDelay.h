@@ -17,7 +17,6 @@ namespace Cloudseed
 
 	private:
 		float delayBuffer[DelayBufferSize] = { 0 };
-		float output[BUFFER_SIZE] = { 0 };
 
 		float tapGains[MaxTaps] = { 0 };
 		float tapPosition[MaxTaps] = { 0 };
@@ -56,11 +55,6 @@ namespace Cloudseed
 			UpdateSeeds();
 		}
 
-		float* GetOutput()
-		{
-			return output;
-		}
-
 		void SetTapCount(int tapCount)
 		{
 			if (tapCount < 1) tapCount = 1;
@@ -80,12 +74,13 @@ namespace Cloudseed
 			decay = tapDecay;
 		}
 
-		void Process(float* input, int sampleCount)
+		void Process(float* input, float* output, int bufSize)
 		{
 			float lengthScaler = lengthSamples / (float)count;
-			float totalGain = 1.0 / std::sqrtf(1 + count);
+			float totalGain = 3.0 / std::sqrtf(1 + count);
+			totalGain *= (1 + decay * 2);
 
-			for (int i = 0; i < sampleCount; i++)
+			for (int i = 0; i < bufSize; i++)
 			{
 				delayBuffer[writeIdx] = input[i];
 				output[i] = 0;
@@ -107,7 +102,6 @@ namespace Cloudseed
 		void ClearBuffers()
 		{
 			Utils::ZeroBuffer(delayBuffer, DelayBufferSize);
-			Utils::ZeroBuffer(output, BUFFER_SIZE);
 		}
 
 

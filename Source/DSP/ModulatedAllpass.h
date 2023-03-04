@@ -14,7 +14,6 @@ namespace Cloudseed
 
 	private:
 		float delayBuffer[DelayBufferSize] = { 0 };
-		float output[BUFFER_SIZE] = { 0 };
 		int index;
 		uint64_t samplesProcessed;
 
@@ -55,27 +54,21 @@ namespace Cloudseed
 			Update();
 		}
 
-		inline float* GetOutput()
-		{
-			return output;
-		}
-
 		void ClearBuffers()
 		{
 			Utils::ZeroBuffer(delayBuffer, DelayBufferSize);
-			Utils::ZeroBuffer(output, BUFFER_SIZE);
 		}
 
-		void Process(float* input, int sampleCount)
+		void Process(float* input, float* output, int sampleCount)
 		{
 			if (ModulationEnabled)
-				ProcessWithMod(input, sampleCount);
+				ProcessWithMod(input, output, sampleCount);
 			else
-				ProcessNoMod(input, sampleCount);
+				ProcessNoMod(input, output, sampleCount);
 		}
 
 	private:
-		void ProcessNoMod(float* input, int sampleCount)
+		void ProcessNoMod(float* input, float* output, int sampleCount)
 		{
 			auto delayedIndex = index - SampleDelay;
 			if (delayedIndex < 0) delayedIndex += DelayBufferSize;
@@ -96,7 +89,7 @@ namespace Cloudseed
 			}
 		}
 
-		void ProcessWithMod(float* input, int sampleCount)
+		void ProcessWithMod(float* input, float* output, int sampleCount)
 		{
 			for (int i = 0; i < sampleCount; i++)
 			{

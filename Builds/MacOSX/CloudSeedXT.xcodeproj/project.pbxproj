@@ -145,7 +145,6 @@
 		8D734D2E87F8AACBA2B54149 /* Shared Code */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libCloudSeedXT.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E7B6390F196FBD56D75F0CE /* JuceHeader.h */ /* JuceHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JuceHeader.h; path = ../../JuceLibraryCode/JuceHeader.h; sourceTree = SOURCE_ROOT; };
 		8FF5AE6F0537E66F368B4639 /* JucePluginDefines.h */ /* JucePluginDefines.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JucePluginDefines.h; path = ../../JuceLibraryCode/JucePluginDefines.h; sourceTree = SOURCE_ROOT; };
-		904BF9C93093516801BC4C4C /* MultitapDiffuser.h */ /* MultitapDiffuser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MultitapDiffuser.h; path = ../../Source/DSP/MultitapDiffuser.h; sourceTree = SOURCE_ROOT; };
 		92173E23A5B1107608118FFB /* logo.png */ /* logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = logo.png; path = ../../logo.png; sourceTree = SOURCE_ROOT; };
 		92967FB44B6F41A36FD1BB65 /* RecentFilesMenuTemplate.nib */ /* RecentFilesMenuTemplate.nib */ = {isa = PBXFileReference; lastKnownFileType = file.nib; name = RecentFilesMenuTemplate.nib; path = RecentFilesMenuTemplate.nib; sourceTree = SOURCE_ROOT; };
 		9779462883C3D15F33E334F8 /* RotaryKnobLive.h */ /* RotaryKnobLive.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = RotaryKnobLive.h; path = ../../Source/RotaryKnobLive.h; sourceTree = SOURCE_ROOT; };
@@ -154,6 +153,7 @@
 		9D2C2214D52665E826CE4926 /* juce_cryptography */ /* juce_cryptography */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_cryptography; path = "~/JUCE/modules/juce_cryptography"; sourceTree = "<absolute>"; };
 		9FB88ABDF9BF4E13A3514A2F /* TitilliumWeb-Regular.ttf */ /* TitilliumWeb-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Regular.ttf"; path = "../../Titillium_Web/TitilliumWeb-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		A08DBDE02BF89E6805DDDAA5 /* ModalOverlay.h */ /* ModalOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ModalOverlay.h; path = ../../Source/ModalOverlay.h; sourceTree = SOURCE_ROOT; };
+		A45FD52B4456DF356D21E60D /* MultitapDelay.h */ /* MultitapDelay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MultitapDelay.h; path = ../../Source/DSP/MultitapDelay.h; sourceTree = SOURCE_ROOT; };
 		A750711155B0E4DD56D9CC32 /* Lp1.h */ /* Lp1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Lp1.h; path = ../../Source/DSP/Lp1.h; sourceTree = SOURCE_ROOT; };
 		AA5D950FD7D923233A826FE5 /* juce_audio_plugin_client */ /* juce_audio_plugin_client */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_plugin_client; path = "~/JUCE/modules/juce_audio_plugin_client"; sourceTree = "<absolute>"; };
 		AED59B58BAA80C2904502736 /* include_juce_audio_plugin_client_ARA.cpp */ /* include_juce_audio_plugin_client_ARA.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_ARA.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_ARA.cpp; sourceTree = SOURCE_ROOT; };
@@ -362,7 +362,7 @@
 				A750711155B0E4DD56D9CC32,
 				0074BCF26CFE137BC281D4E4,
 				25852E97BD4C8C51BF26781E,
-				904BF9C93093516801BC4C4C,
+				A45FD52B4456DF356D21E60D,
 				AF8FB5BD33B39F2582B2BF85,
 				88B13187596B9DC6AFC49494,
 				03604F6191AE4E16280D0271,
@@ -861,7 +861,7 @@
 					"JucePlugin_ARAContentTypes=0",
 					"JucePlugin_ARATransformationFlags=0",
 					"JucePlugin_ARAFactoryID=\\\"com.GhostNoteAudio.CloudSeedXT.factory\\\"",
-					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.3.5.0\\\"",
+					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.1.0.0\\\"",
 					"JucePlugin_ARACompatibleArchiveIDs=\\\"\\\"",
 					"JUCE_STANDALONE_APPLICATION=JucePlugin_Build_Standalone",
 					"BUFFER_SIZE=1024",
@@ -983,7 +983,7 @@
 					"JucePlugin_ARAContentTypes=0",
 					"JucePlugin_ARATransformationFlags=0",
 					"JucePlugin_ARAFactoryID=\\\"com.GhostNoteAudio.CloudSeedXT.factory\\\"",
-					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.3.5.0\\\"",
+					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.1.0.0\\\"",
 					"JucePlugin_ARACompatibleArchiveIDs=\\\"\\\"",
 					"JUCE_STANDALONE_APPLICATION=JucePlugin_Build_Standalone",
 					"BUFFER_SIZE=1024",
@@ -1147,7 +1147,7 @@
 					"JucePlugin_ARAContentTypes=0",
 					"JucePlugin_ARATransformationFlags=0",
 					"JucePlugin_ARAFactoryID=\\\"com.GhostNoteAudio.CloudSeedXT.factory\\\"",
-					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.3.5.0\\\"",
+					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.1.0.0\\\"",
 					"JucePlugin_ARACompatibleArchiveIDs=\\\"\\\"",
 					"JUCE_STANDALONE_APPLICATION=JucePlugin_Build_Standalone",
 					"BUFFER_SIZE=1024",
@@ -1262,7 +1262,7 @@
 					"JucePlugin_ARAContentTypes=0",
 					"JucePlugin_ARATransformationFlags=0",
 					"JucePlugin_ARAFactoryID=\\\"com.GhostNoteAudio.CloudSeedXT.factory\\\"",
-					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.3.5.0\\\"",
+					"JucePlugin_ARADocumentArchiveID=\\\"com.GhostNoteAudio.CloudSeedXT.aradocumentarchive.1.0.0\\\"",
 					"JucePlugin_ARACompatibleArchiveIDs=\\\"\\\"",
 					"JUCE_STANDALONE_APPLICATION=JucePlugin_Build_Standalone",
 					"BUFFER_SIZE=1024",

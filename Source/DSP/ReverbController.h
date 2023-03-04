@@ -4,7 +4,7 @@
 #include "../Parameters.h"
 #include "ReverbChannel.h"
 #include "AllpassDiffuser.h"
-#include "MultitapDiffuser.h"
+#include "MultitapDelay.h"
 #include "Utils.h"
 
 namespace Cloudseed
@@ -16,10 +16,6 @@ namespace Cloudseed
 
 		ReverbChannel channelL;
 		ReverbChannel channelR;
-		float leftChannelIn[BUFFER_SIZE];
-		float rightChannelIn[BUFFER_SIZE];
-		float leftLineBuffer[BUFFER_SIZE];
-		float rightLineBuffer[BUFFER_SIZE];
 		double parameters[(int)Parameter::COUNT];
 
 	public:
@@ -83,6 +79,9 @@ namespace Cloudseed
 	private:
 		void ProcessChunk(float* inL, float* inR, float* outL, float* outR, int bufSize)
 		{
+			float leftChannelIn[BUFFER_SIZE];
+			float rightChannelIn[BUFFER_SIZE];
+
 			float inputMix = ScaleParam(parameters[Parameter::InputMix], Parameter::InputMix);
 			float cm = inputMix * 0.5;
 			float cmi = (1 - cm);
@@ -93,13 +92,8 @@ namespace Cloudseed
 				rightChannelIn[i] = inR[i] * cmi + inL[i] * cm;
 			}
 
-			channelL.Process(leftChannelIn, bufSize);
-			channelR.Process(rightChannelIn, bufSize);
-			auto leftOut = channelL.GetOutput();
-			auto rightOut = channelR.GetOutput();
-
-			Utils::Copy(outL, leftOut, bufSize);
-			Utils::Copy(outR, rightOut, bufSize);
+			channelL.Process(leftChannelIn, outL, bufSize);
+			channelR.Process(rightChannelIn, outR, bufSize);
 		}
 	};
 }

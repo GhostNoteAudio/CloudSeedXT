@@ -15,47 +15,48 @@ namespace Parameter
     const int EarlyOut = 7;
     const int LateOut = 8;
 
-    const int TapCount = 9;
-    const int TapDecay = 10;
-    const int TapPredelay = 11;
-    const int TapLength = 12;
+    const int TapEnabled = 9;
+    const int TapCount = 10;
+    const int TapDecay = 11;
+    const int TapPredelay = 12;
+    const int TapLength = 13;
 
-    const int EarlyDiffuseEnabled = 13;
-    const int EarlyDiffuseCount = 14;
-    const int EarlyDiffuseDelay = 15;
-    const int EarlyDiffuseModAmount = 16;
-    const int EarlyDiffuseFeedback = 17;
-    const int EarlyDiffuseModRate = 18;
+    const int EarlyDiffuseEnabled = 14;
+    const int EarlyDiffuseCount = 15;
+    const int EarlyDiffuseDelay = 16;
+    const int EarlyDiffuseModAmount = 17;
+    const int EarlyDiffuseFeedback = 18;
+    const int EarlyDiffuseModRate = 19;
 
-    const int LateMode = 19;
-    const int LateLineCount = 20;
-    const int LateDiffuseEnabled = 21;
-    const int LateDiffuseCount = 22;
-    const int LateLineSize = 23;
-    const int LateLineModAmount = 24;
-    const int LateDiffuseDelay = 25;
-    const int LateDiffuseModAmount = 26;
-    const int LateLineDecay = 27;
-    const int LateLineModRate = 28;
-    const int LateDiffuseFeedback = 29;
-    const int LateDiffuseModRate = 30;
+    const int LateMode = 20;
+    const int LateLineCount = 21;
+    const int LateDiffuseEnabled = 22;
+    const int LateDiffuseCount = 23;
+    const int LateLineSize = 24;
+    const int LateLineModAmount = 25;
+    const int LateDiffuseDelay = 26;
+    const int LateDiffuseModAmount = 27;
+    const int LateLineDecay = 28;
+    const int LateLineModRate = 29;
+    const int LateDiffuseFeedback = 30;
+    const int LateDiffuseModRate = 31;
 
-    const int EqLowShelfEnabled = 31;
-    const int EqHighShelfEnabled = 32;
-    const int EqLowpassEnabled = 33;
-    const int EqLowFreq = 34;
-    const int EqHighFreq = 35;
-    const int EqCutoff = 36;
-    const int EqLowGain = 37;
-    const int EqHighGain = 38;
-    const int EqCrossSeed = 39;
+    const int EqLowShelfEnabled = 32;
+    const int EqHighShelfEnabled = 33;
+    const int EqLowpassEnabled = 34;
+    const int EqLowFreq = 35;
+    const int EqHighFreq = 36;
+    const int EqCutoff = 37;
+    const int EqLowGain = 38;
+    const int EqHighGain = 39;
+    const int EqCrossSeed = 40;
 
-    const int SeedTap = 40;
-    const int SeedDiffusion = 41;
-    const int SeedDelay = 42;
-    const int SeedPostDiffusion = 43;
+    const int SeedTap = 41;
+    const int SeedDiffusion = 42;
+    const int SeedDelay = 43;
+    const int SeedPostDiffusion = 44;
 
-    const int COUNT = 44;
+    const int COUNT = 45;
 };
 
 extern const char* ParameterIds[Parameter::COUNT];
@@ -69,6 +70,7 @@ inline double ScaleParam(double val, int index)
     case Parameter::Interpolation:
     case Parameter::LowCutEnabled:
     case Parameter::HighCutEnabled:
+    case Parameter::TapEnabled:
     case Parameter::LateDiffuseEnabled:
     case Parameter::EqLowShelfEnabled:
     case Parameter::EqHighShelfEnabled:
@@ -159,6 +161,7 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
     case Parameter::Interpolation:
     case Parameter::HighCutEnabled:
     case Parameter::LowCutEnabled:
+    case Parameter::TapEnabled:
     case Parameter::LateDiffuseEnabled:
     case Parameter::EqLowShelfEnabled:
     case Parameter::EqHighShelfEnabled:
@@ -215,7 +218,7 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
             return juce::String(s, 1) + " sec";
 
     case Parameter::LateMode:
-        return s == 1 ? "Pre" : "Post";
+        return s == 1 ? "Post" : "Pre";
 
     case Parameter::EarlyDiffuseModAmount:
     case Parameter::LateLineModAmount:

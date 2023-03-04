@@ -15,18 +15,15 @@ namespace Cloudseed
 		Biquad lowShelf;
 		Biquad highShelf;
 		Lp1 lowPass;
-		float tempBuffer[BUFFER_SIZE] = { 0 };
-		float mixedBuffer[BUFFER_SIZE] = { 0 };
 		float filterOutputBuffer[BUFFER_SIZE] = { 0 };
 		float feedback;
 
 	public:
-
 		bool DiffuserEnabled;
 		bool LowShelfEnabled;
 		bool HighShelfEnabled;
 		bool CutoffEnabled;
-		bool LateStageTap;
+		bool TapPostDiffuser;
 
 		DelayLine() :
 			lowShelf(Biquad::FilterType::LowShelf, 48000),
@@ -141,63 +138,30 @@ namespace Cloudseed
 			diffuser.SetInterpolationEnabled(value);
 		}
 
-		float* GetOutput()
+		void Process(float* input, float* output, int bufSize)
 		{
-			if (LateStageTap)
-			{
-				if (DiffuserEnabled)
-					return diffuser.GetOutput();
-				else
-					return mixedBuffer;
-			}
-			else
-			{
-				return delay.GetOutput();
-			}
-		}
+			float tempBuffer[BUFFER_SIZE];
 
-		void Process(float* input, int sampleCount)
-		{
-			for (int i = 0; i < sampleCount; i++)
-				mixedBuffer[i] = input[i] + filterOutputBuffer[i] * feedback;
+			for (int i = 0; i < bufSize; i++)
+				tempBuffer[i] = input[i] + filterOutputBuffer[i] * feedback;
 
-			if (LateStageTap)
-			{
-				if (DiffuserEnabled)
-				{
-					diffuser.Process(mixedBuffer, sampleCount);
-					delay.Process(diffuser.GetOutput(), sampleCount);
-				}
-				else
-				{
-					delay.Process(mixedBuffer, sampleCount);
-				}
-
-				Utils::Copy(tempBuffer, delay.GetOutput(), sampleCount);
-			}
-			else
-			{
-				if (DiffuserEnabled)
-				{
-					delay.Process(mixedBuffer, sampleCount);
-					diffuser.Process(delay.GetOutput(), sampleCount);
-					Utils::Copy(tempBuffer, diffuser.GetOutput(), sampleCount);
-				}
-				else
-				{
-					delay.Process(mixedBuffer, sampleCount);
-					Utils::Copy(tempBuffer, delay.GetOutput(), sampleCount);
-				}
-			}
-
+			delay.Process(tempBuffer, tempBuffer, bufSize);
+			
+			if (!TapPostDiffuser)
+				Utils::Copy(output, tempBuffer, bufSize);
+			if (DiffuserEnabled)
+				diffuser.Process(tempBuffer, tempBuffer, bufSize);
 			if (LowShelfEnabled)
-				lowShelf.Process(tempBuffer, tempBuffer, sampleCount);
+				lowShelf.Process(tempBuffer, tempBuffer, bufSize);
 			if (HighShelfEnabled)
-				highShelf.Process(tempBuffer, tempBuffer, sampleCount);
+				highShelf.Process(tempBuffer, tempBuffer, bufSize);
 			if (CutoffEnabled)
-				lowPass.Process(tempBuffer, tempBuffer, sampleCount);
+				lowPass.Process(tempBuffer, tempBuffer, bufSize);
 
-			Utils::Copy(filterOutputBuffer, tempBuffer, sampleCount);
+			Utils::Copy(filterOutputBuffer, tempBuffer, bufSize);
+
+			if (TapPostDiffuser)
+				Utils::Copy(output, tempBuffer, bufSize);
 		}
 
 		void ClearDiffuserBuffer()
@@ -212,12 +176,7 @@ namespace Cloudseed
 			lowShelf.ClearBuffers();
 			highShelf.ClearBuffers();
 			lowPass.Output = 0;
-
-			for (int i = 0; i < BUFFER_SIZE; i++)
-			{
-				tempBuffer[i] = 0.0;
-				filterOutputBuffer[i] = 0.0;
-			}
+			Utils::ZeroBuffer(filterOutputBuffer, BUFFER_SIZE);
 		}
 	};
 }

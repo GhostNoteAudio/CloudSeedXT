@@ -77,12 +77,6 @@ namespace Cloudseed
 				filters[i].InterpolationEnabled = enabled;
 		}
 
-		float* GetOutput()
-		{
-			return filters[Stages - 1].GetOutput();
-		}
-
-
 		void SetDelay(int delaySamples)
 		{
 			delay = delaySamples;
@@ -109,14 +103,16 @@ namespace Cloudseed
 				filters[i].ModRate = rate * (0.85 + 0.3 * seedValues[MaxStageCount * 2 + i]) / samplerate;
 		}
 
-		void Process(float* input, int sampleCount)
+		void Process(float* input, float* output, int bufSize)
 		{
-			filters[0].Process(input, sampleCount);
+			float tempBuffer[BUFFER_SIZE];
+
+			filters[0].Process(input, tempBuffer, bufSize);
 
 			for (int i = 1; i < Stages; i++)
-			{
-				filters[i].Process(filters[i - 1].GetOutput(), sampleCount);
-			}
+				filters[i].Process(tempBuffer, tempBuffer, bufSize);
+			
+			Utils::Copy(output, tempBuffer, bufSize);
 		}
 
 		void ClearBuffers()

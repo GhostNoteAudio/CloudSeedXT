@@ -46,6 +46,12 @@ namespace Cloudseed
 			Update();
 		}
 
+		void ClearBuffers()
+		{
+			lpOut = 0;
+			Output = 0;
+		}
+
 		void Update()
 		{
 			// Prevent going over the Nyquist frequency
