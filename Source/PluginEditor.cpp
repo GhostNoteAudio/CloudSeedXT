@@ -182,7 +182,7 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     
     startTimerHz(30);
 
-    //setScaleFactor(0.75);
+    setScaleFactor(0.75);
     // Adjust the About dialog to compensate for small scaling factor
     overlay.setTransform(juce::AffineTransform::scale(1.5, 1.5, getWidth() / 2, getHeight() / 2));
 }

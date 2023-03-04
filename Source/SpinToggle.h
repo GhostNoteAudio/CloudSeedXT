@@ -5,6 +5,8 @@
 
 class SpinToggleButton: public juce::ToggleButton
 {
+    bool mouseOver = false;
+
     juce::String getLabel()
     {
         auto toggled = getToggleState();
@@ -25,6 +27,18 @@ public:
     {
     }
 
+    inline void mouseExit(const juce::MouseEvent& ev) override
+    {
+        mouseOver = false;
+        juce::ToggleButton::mouseExit(ev);
+    }
+
+    inline void mouseEnter(const juce::MouseEvent& ev) override
+    {
+        mouseOver = true;
+        juce::ToggleButton::mouseEnter(ev);
+    }
+
     inline void paintButton(juce::Graphics& g, bool highlighted, bool down) override
     {
         auto colour = findColour(juce::Slider::trackColourId);
@@ -33,6 +47,7 @@ public:
         g.fillRoundedRectangle(1, 1, getWidth() - 2, getHeight() - 2, 4);
 
         colour = findColour(juce::Slider::thumbColourId);
+        if (mouseOver) colour = colour.brighter(0.3f);
         g.setColour(colour);
         g.setFont(getFontRegular(20 * scale));
         g.drawText(getLabel(), 2, 0, getWidth(), getHeight(), juce::Justification::centred);

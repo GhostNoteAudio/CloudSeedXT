@@ -105,7 +105,7 @@ private:
     juce::Label presetName;
     ModalOverlay overlay;
     AboutDialog aboutDialog;
-    bool scaleBig = true;
+    bool scaleBig = false;
     
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (CloudSeedXTAudioProcessorEditor)

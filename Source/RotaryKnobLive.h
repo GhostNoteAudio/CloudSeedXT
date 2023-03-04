@@ -4,6 +4,8 @@
 
 class RotaryKnobLive  : public juce::Slider
 {
+	bool mouseOver = false;
+
 public:
 	inline RotaryKnobLive()
     {
@@ -15,6 +17,18 @@ public:
 	inline ~RotaryKnobLive() override
     {
     }
+
+	inline void mouseExit(const juce::MouseEvent& ev) override
+	{
+		mouseOver = false;
+		juce::Slider::mouseExit(ev);
+	}
+	
+	inline void mouseEnter(const juce::MouseEvent& ev) override
+	{
+		mouseOver = true;
+		juce::Slider::mouseEnter(ev);
+	}
 
 	inline void paint (juce::Graphics& g) override
     {
@@ -40,17 +54,19 @@ public:
 		auto tickAngle = (-(0.25 - tickRangeAdjuster) + (1.5 - tickRangeAdjuster*2) * sliderPos) * pi;
 		juce::Path p;
 
-		g.setColour(findColour(juce::Slider::rotarySliderFillColourId));
+		auto colour = findColour(juce::Slider::rotarySliderFillColourId);
+		g.setColour(colour);
 		//g.fillEllipse(rx - lineThickness / 2 + 0.5, ry - lineThickness / 2 + 0.5, 2*radius + lineThickness - 1, 2*radius + lineThickness - 1);
 		g.fillEllipse(1.2, 1.2, nominalWidth - 2.4, nomninalHeight - 2.4);
 
-		auto colour = findColour(juce::Slider::trackColourId);
+		colour = findColour(juce::Slider::trackColourId);
 		g.setColour(colour);
 		p.addArc(rx, ry, rw, rw, pathAngle, 0.75 * pi, true);
 		g.strokePath(p, juce::PathStrokeType(lineThickness));
 		p.clear();
 
 		colour = findColour(juce::Slider::thumbColourId);
+		if (mouseOver) colour = colour.brighter(0.3f);
 		g.setColour(colour);
 		p.addArc(rx, ry, rw, rw, -0.75 * pi, pathAngle, true);
 		g.strokePath(p, juce::PathStrokeType(lineThickness));

@@ -6,6 +6,8 @@
 
 class Spinner : public juce::Slider
 {
+	bool mouseOver = false;
+
 public:
 	std::function<juce::String(double)> Formatter;
 
@@ -22,6 +24,18 @@ public:
 	{
 	}
 
+	inline void mouseExit(const juce::MouseEvent& ev) override
+	{
+		mouseOver = false;
+		juce::Slider::mouseExit(ev);
+	}
+
+	inline void mouseEnter(const juce::MouseEvent& ev) override
+	{
+		mouseOver = true;
+		juce::Slider::mouseEnter(ev);
+	}
+
 	inline void paint(juce::Graphics& g) override
 	{
 		auto relValue = (getValue() - getMinimum()) / (getMaximum() - getMinimum());
@@ -31,6 +45,7 @@ public:
 		g.fillRoundedRectangle(1, 1, getWidth() - 2, getHeight() - 2, 4);
 
 		colour = findColour(juce::Slider::thumbColourId);
+		if (mouseOver) colour = colour.brighter(0.3f);
 		g.setColour(colour);
 		g.setFont(getFontRegular(20 * scale));
 		g.drawText(Formatter(relValue), 2, 0, getWidth(), getHeight(), juce::Justification::centred);

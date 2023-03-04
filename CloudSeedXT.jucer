@@ -6,7 +6,7 @@
               pluginManufacturer="Ghost Note Audio" pluginManufacturerCode="Gnau"
               pluginAUIsSandboxSafe="1" pluginVST3Category="Fx,Reverb" companyName="Ghost Note Audio"
               version="1.0.0" companyWebsite="https://ghostnoteaudio.uk" userNotes="JUCE_DIR=C:\Dev\JUCE&#10;JUCE_REL_DIR=..\..\..\..\..\Dev\JUCE"
-              pluginCode="Gcsx">
+              pluginCode="Gcsx" defines="BUFFER_SIZE=1024">
   <MAINGROUP id="IrhCPn" name="CloudSeedXT">
     <GROUP id="{1E8DD92F-7C83-43D0-2970-4C9E5B6221C5}" name="Binary Data">
       <FILE id="xvCMWW" name="logo.svg" compile="0" resource="1" file="logo.svg"/>
@@ -44,6 +44,26 @@
             resource="1" file="Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf"/>
     </GROUP>
     <GROUP id="{EB45CFC1-16D6-A877-5A89-0D37B54FF64B}" name="Source">
+      <FILE id="GbrgqB" name="LcgRandom.h" compile="0" resource="0" file="Source/LcgRandom.h"/>
+      <FILE id="MA52MG" name="RandomBuffer.cpp" compile="1" resource="0"
+            file="Source/RandomBuffer.cpp"/>
+      <FILE id="ZSGFi7" name="RandomBuffer.h" compile="0" resource="0" file="Source/RandomBuffer.h"/>
+      <FILE id="gYiioB" name="Hp1.h" compile="0" resource="0" file="Source/Hp1.h"/>
+      <FILE id="gl0V4d" name="Lp1.h" compile="0" resource="0" file="Source/Lp1.h"/>
+      <FILE id="e9QCUl" name="AllpassDiffuser.h" compile="0" resource="0"
+            file="Source/AllpassDiffuser.h"/>
+      <FILE id="v6SxOC" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
+      <FILE id="kRO6Nj" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
+      <FILE id="cw0MYX" name="DelayLine.h" compile="0" resource="0" file="Source/DelayLine.h"/>
+      <FILE id="pTcbvE" name="ModulatedAllpass.h" compile="0" resource="0"
+            file="Source/ModulatedAllpass.h"/>
+      <FILE id="T4eJVF" name="ModulatedDelay.h" compile="0" resource="0"
+            file="Source/ModulatedDelay.h"/>
+      <FILE id="ojUMu2" name="MultitapDiffuser.h" compile="0" resource="0"
+            file="Source/MultitapDiffuser.h"/>
+      <FILE id="m0Na55" name="ReverbChannel.h" compile="0" resource="0" file="Source/ReverbChannel.h"/>
+      <FILE id="fcJ5oI" name="ReverbController.h" compile="0" resource="0"
+            file="Source/ReverbController.h"/>
       <FILE id="Wr5mwj" name="InputDialog.h" compile="0" resource="0" file="Source/InputDialog.h"/>
       <FILE id="niRPfx" name="RoundedPanel.h" compile="0" resource="0" file="Source/RoundedPanel.h"/>
       <FILE id="eYLTtc" name="Presets.h" compile="0" resource="0" file="Source/Presets.h"/>

@@ -589,6 +589,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\RandomBuffer.cpp">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\Biquad.cpp">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\Source\Parameters.cpp">
       <Filter>CloudSeedXT\Source</Filter>
     </ClCompile>
@@ -2931,6 +2937,42 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\LcgRandom.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\RandomBuffer.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Hp1.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Lp1.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\AllpassDiffuser.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Biquad.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DelayLine.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ModulatedAllpass.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ModulatedDelay.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\MultitapDiffuser.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ReverbChannel.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\ReverbController.h">
+      <Filter>CloudSeedXT\Source</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\Source\InputDialog.h">
       <Filter>CloudSeedXT\Source</Filter>
     </ClInclude>

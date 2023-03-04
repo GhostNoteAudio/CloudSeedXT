@@ -51,7 +51,8 @@ CloudSeedXTAudioProcessor::CloudSeedXTAudioProcessor() :
     AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-    parameters(*this, nullptr, juce::Identifier("CloudSeedXT"), createParameterLayout(this))
+    parameters(*this, nullptr, juce::Identifier("CloudSeedXT"), createParameterLayout(this)),
+    reverb(48000)
 {
     presetName = "Default Preset";
 
@@ -100,13 +101,13 @@ int CloudSeedXTAudioProcessor::getCurrentProgram()
     return 0;
 }
 
-void CloudSeedXTAudioProcessor::setCurrentProgram (int index)
+void CloudSeedXTAudioProcessor::setCurrentProgram(int index)
 {
 }
 
-const juce::String CloudSeedXTAudioProcessor::getProgramName (int index)
+const juce::String CloudSeedXTAudioProcessor::getProgramName(int index)
 {
-    return {};
+    return presetName;
 }
 
 void CloudSeedXTAudioProcessor::changeProgramName (int index, const juce::String& newName)
@@ -115,82 +116,31 @@ void CloudSeedXTAudioProcessor::changeProgramName (int index, const juce::String
 
 void CloudSeedXTAudioProcessor::prepareToPlay (double sampleRate, int samplesPerBlock)
 {
-    //if (expanderL.GetSamplerate() != sampleRate)
-    //{
-        //expanderL.SetSamplerate(sampleRate);
-        //expanderR.SetSamplerate(sampleRate);
-    //}
+    if (reverb.GetSamplerate() != sampleRate)
+        reverb.SetSamplerate(sampleRate);
 }
 
 void CloudSeedXTAudioProcessor::releaseResources()
 {
-    // When playback stops, you can use this as an opportunity to free up any
-    // spare memory, etc.
+    
 }
 
 bool CloudSeedXTAudioProcessor::isBusesLayoutSupported(const BusesLayout& layouts) const
 {
     auto numInsMain = layouts.getNumChannels(true, 0);
-    auto numInsAux = layouts.getNumChannels(true, 1);
     auto numOuts = layouts.getNumChannels(false, 0);
-    
-    if (numInsMain == 1 && numInsAux == 1 && numOuts == 1) // mono processor
-        return true;
-    if (numInsMain == 2 && (numInsAux == 1 || numInsAux == 2) && numOuts == 2) // stereo processor, aux can be mono
-        return true;
-    return false;
+    return numInsMain == 2 && numOuts == 2;
 }
 
 void CloudSeedXTAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, juce::MidiBuffer& midiMessages)
 {
-    //bool stereo = getParamByIdx((int)Parameters::Stereo) >= 0.5;
-    //bool aux = getParamByIdx((int)Parameters::Aux) >= 0.5;
-
-    //juce::ScopedNoDenormals noDenormals;
-    //int numCh = buffer.getNumChannels(); // todo use this!!!
-    //int len = buffer.getNumSamples();
-    //auto totalIns = getTotalNumInputChannels();
-    //auto totalOuts = getTotalNumOutputChannels();
-
-    //if (totalIns == 0 || totalOuts == 0)
-    //    return;
-    //if (numCh < totalIns)
-    //    totalIns = numCh;
-    //if (numCh < totalOuts)
-    //    totalOuts = numCh;
-
-    //// Sensor is always the left channel, no matter whether running stereo mode or Aux mode or both.
-    //int auxIdx = (aux && totalIns >= 3) ? 2 : 0;
-
-    //const float* inputL = buffer.getReadPointer(0);
-    //const float* inputR = buffer.getReadPointer(totalIns > 1 ? 1 : 0);
-    //const float* sensor = buffer.getReadPointer(auxIdx);
-
-    //float* outputL = buffer.getWritePointer(0);
-    //float* outputR = buffer.getWritePointer(totalOuts > 1 ? 1 : 0);
-
-    //Copy(bufL, inputL, len);
-    //Copy(bufR, inputR, len);
-    //Copy(bufS, sensor, len);
-
-    ////expanderL.Process(bufL, bufS, len);
-    ////expanderR.Process(bufR, bufS, len);
-
-    //trialMode.Process(bufL, len, false);
-    //trialMode.Process(bufR, len, true);
-
-    //if (stereo)
-    //{
-    //    Copy(outputL, bufL, len);
-    //    if (totalOuts > 1)
-    //        Copy(outputR, bufR, len);
-    //}
-    //else
-    //{
-    //    Copy(outputL, bufL, len);
-    //    if (totalOuts > 1)
-    //        Copy(outputR, bufL, len);
-    //}
+    juce::ScopedNoDenormals noDenormals;
+    int bufSize = buffer.getNumSamples();
+    float* inputL = (float*)buffer.getReadPointer(0);
+    float* inputR = (float*)buffer.getReadPointer(1);
+    float* outputL = buffer.getWritePointer(0);
+    float* outputR = buffer.getWritePointer(1);
+    reverb.Process(inputL, inputR, outputL, outputR, bufSize);
 }
 
 //==============================================================================
@@ -223,41 +173,7 @@ void CloudSeedXTAudioProcessor::setStateInformation (const void* data, int sizeI
 
 void CloudSeedXTAudioProcessor::parameterValueChanged(int idx, float value)
 {
-    auto scaledVal = ScaleParam(value, idx);
-
-    //switch(idx)
-    //{
-    //case (int)Parameters::BandUpper:
-    //    expanderL.BandUpper = scaledVal;
-    //    expanderR.BandUpper = scaledVal;
-    //    expanderL.ResetBands();
-    //    expanderR.ResetBands();
-    //    break;
-    //case (int)Parameters::BandGap:
-    //    expanderL.BandGap = scaledVal;
-    //    expanderR.BandGap = scaledVal;
-    //    expanderL.ResetBands();
-    //    expanderR.ResetBands();
-    //    break;
-    //case (int)Parameters::Expansion:
-    //    expanderL.Expansion = scaledVal;
-    //    expanderR.Expansion = scaledVal;
-    //    break;
-    //case (int)Parameters::DecayMs:
-    //    expanderL.DecayMs = scaledVal;
-    //    expanderR.DecayMs = scaledVal;
-    //    break;
-    //case (int)Parameters::Knee:
-    //    expanderL.Knee = scaledVal;
-    //    expanderR.Knee = scaledVal;
-    //    break;
-    //case (int)Parameters::Hysteresis:
-    //    expanderL.Hysteresis = scaledVal;
-    //    expanderR.Hysteresis = scaledVal;
-    //    expanderL.ResetBands();
-    //    expanderR.ResetBands();
-    //    break;
-    //}
+    reverb.SetParameter(idx, value);
 }
 
 void CloudSeedXTAudioProcessor::parameterGestureChanged(int parameterIndex, bool gestureIsStarting)

@@ -2,8 +2,7 @@
 
 #include <JuceHeader.h>
 #include "Parameters.h"
-//#include "Expander.h"
-#include "TrialMode.h"
+#include "ReverbController.h"
 
 //==============================================================================
 /**
@@ -54,8 +53,7 @@ public:
     juce::String getPresetName();
 
     juce::AudioProcessorValueTreeState parameters;
-    //Expander expanderL;
-    //Expander expanderR;
+    ReverbController reverb;
 private:
     
     juce::String presetName;

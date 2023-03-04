@@ -215,7 +215,7 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
     case Parameter::EarlyDiffuseModAmount:
     case Parameter::LateLineModAmount:
     case Parameter::LateDiffuseModAmount:
-        return juce::String((int)(val * 100)) + "%";
+        return juce::String(s, 2) + " ms";
     
     case Parameter::EarlyDiffuseModRate:
     case Parameter::LateLineModRate:
