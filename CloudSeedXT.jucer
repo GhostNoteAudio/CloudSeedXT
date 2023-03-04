@@ -44,33 +44,35 @@
             resource="1" file="Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf"/>
     </GROUP>
     <GROUP id="{EB45CFC1-16D6-A877-5A89-0D37B54FF64B}" name="Source">
-      <FILE id="GbrgqB" name="LcgRandom.h" compile="0" resource="0" file="Source/LcgRandom.h"/>
-      <FILE id="MA52MG" name="RandomBuffer.cpp" compile="1" resource="0"
-            file="Source/RandomBuffer.cpp"/>
-      <FILE id="ZSGFi7" name="RandomBuffer.h" compile="0" resource="0" file="Source/RandomBuffer.h"/>
-      <FILE id="gYiioB" name="Hp1.h" compile="0" resource="0" file="Source/Hp1.h"/>
-      <FILE id="gl0V4d" name="Lp1.h" compile="0" resource="0" file="Source/Lp1.h"/>
-      <FILE id="e9QCUl" name="AllpassDiffuser.h" compile="0" resource="0"
-            file="Source/AllpassDiffuser.h"/>
-      <FILE id="v6SxOC" name="Biquad.cpp" compile="1" resource="0" file="Source/Biquad.cpp"/>
-      <FILE id="kRO6Nj" name="Biquad.h" compile="0" resource="0" file="Source/Biquad.h"/>
-      <FILE id="cw0MYX" name="DelayLine.h" compile="0" resource="0" file="Source/DelayLine.h"/>
-      <FILE id="pTcbvE" name="ModulatedAllpass.h" compile="0" resource="0"
-            file="Source/ModulatedAllpass.h"/>
-      <FILE id="T4eJVF" name="ModulatedDelay.h" compile="0" resource="0"
-            file="Source/ModulatedDelay.h"/>
-      <FILE id="ojUMu2" name="MultitapDiffuser.h" compile="0" resource="0"
-            file="Source/MultitapDiffuser.h"/>
-      <FILE id="m0Na55" name="ReverbChannel.h" compile="0" resource="0" file="Source/ReverbChannel.h"/>
-      <FILE id="fcJ5oI" name="ReverbController.h" compile="0" resource="0"
-            file="Source/ReverbController.h"/>
+      <GROUP id="{0E0A2AE3-5CC3-FF45-82F1-96D1D40278AF}" name="DSP">
+        <FILE id="mKpw7q" name="AllpassDiffuser.h" compile="0" resource="0"
+              file="Source/DSP/AllpassDiffuser.h"/>
+        <FILE id="WrLT2J" name="Biquad.cpp" compile="1" resource="0" file="Source/DSP/Biquad.cpp"/>
+        <FILE id="sf4b5H" name="Biquad.h" compile="0" resource="0" file="Source/DSP/Biquad.h"/>
+        <FILE id="XDqw9U" name="DelayLine.h" compile="0" resource="0" file="Source/DSP/DelayLine.h"/>
+        <FILE id="VcGn3Q" name="Hp1.h" compile="0" resource="0" file="Source/DSP/Hp1.h"/>
+        <FILE id="TqSph3" name="LcgRandom.h" compile="0" resource="0" file="Source/DSP/LcgRandom.h"/>
+        <FILE id="BCicFV" name="Lp1.h" compile="0" resource="0" file="Source/DSP/Lp1.h"/>
+        <FILE id="oApDcf" name="ModulatedAllpass.h" compile="0" resource="0"
+              file="Source/DSP/ModulatedAllpass.h"/>
+        <FILE id="h9M82W" name="ModulatedDelay.h" compile="0" resource="0"
+              file="Source/DSP/ModulatedDelay.h"/>
+        <FILE id="LN9v0S" name="MultitapDiffuser.h" compile="0" resource="0"
+              file="Source/DSP/MultitapDiffuser.h"/>
+        <FILE id="pWpcAg" name="RandomBuffer.cpp" compile="1" resource="0"
+              file="Source/DSP/RandomBuffer.cpp"/>
+        <FILE id="B2PLuw" name="RandomBuffer.h" compile="0" resource="0" file="Source/DSP/RandomBuffer.h"/>
+        <FILE id="Tt0eIh" name="ReverbChannel.h" compile="0" resource="0" file="Source/DSP/ReverbChannel.h"/>
+        <FILE id="aoASAP" name="ReverbController.h" compile="0" resource="0"
+              file="Source/DSP/ReverbController.h"/>
+        <FILE id="gK9XOZ" name="Utils.h" compile="0" resource="0" file="Source/DSP/Utils.h"/>
+      </GROUP>
       <FILE id="Wr5mwj" name="InputDialog.h" compile="0" resource="0" file="Source/InputDialog.h"/>
       <FILE id="niRPfx" name="RoundedPanel.h" compile="0" resource="0" file="Source/RoundedPanel.h"/>
       <FILE id="eYLTtc" name="Presets.h" compile="0" resource="0" file="Source/Presets.h"/>
       <FILE id="KxVtV2" name="SpinToggle.h" compile="0" resource="0" file="Source/SpinToggle.h"/>
       <FILE id="vXodax" name="Stylers.h" compile="0" resource="0" file="Source/Stylers.h"/>
       <FILE id="oFdoca" name="Spinner.h" compile="0" resource="0" file="Source/Spinner.h"/>
-      <FILE id="GFHhMM" name="Utils.h" compile="0" resource="0" file="Source/Utils.h"/>
       <FILE id="P6zibc" name="TrialMode.h" compile="0" resource="0" file="Source/TrialMode.h"/>
       <FILE id="R2anZ4" name="AboutDialog.h" compile="0" resource="0" file="Source/AboutDialog.h"/>
       <FILE id="Vs3NM1" name="Authentication.h" compile="0" resource="0"

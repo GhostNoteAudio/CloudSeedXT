@@ -2,7 +2,7 @@
 
 #include <JuceHeader.h>
 #include "Parameters.h"
-#include "ReverbController.h"
+#include "DSP/ReverbController.h"
 
 //==============================================================================
 /**
@@ -53,7 +53,7 @@ public:
     juce::String getPresetName();
 
     juce::AudioProcessorValueTreeState parameters;
-    ReverbController reverb;
+    Cloudseed::ReverbController reverb;
 private:
     
     juce::String presetName;

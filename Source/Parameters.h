@@ -1,21 +1,21 @@
 #pragma once
 
 #include <JuceHeader.h>
-#include "Utils.h"
+#include "DSP/Utils.h"
 
 namespace Parameter
 {
     const int Interpolation = 0;
-    const int HighCutEnabled = 1;
-    const int LowCutEnabled = 2;
+    const int LowCutEnabled = 1;
+    const int HighCutEnabled = 2;
     const int InputMix = 3;
-    const int HighCut = 4;
-    const int LowCut = 5;
+    const int LowCut = 4;
+    const int HighCut = 5;
     const int DryOut = 6;
     const int EarlyOut = 7;
     const int LateOut = 8;
 
-    const int TapDensity = 9;
+    const int TapCount = 9;
     const int TapDecay = 10;
     const int TapPredelay = 11;
     const int TapLength = 12;
@@ -67,8 +67,8 @@ inline double ScaleParam(double val, int index)
     switch (index)
     {
     case Parameter::Interpolation:
-    case Parameter::HighCutEnabled:
     case Parameter::LowCutEnabled:
+    case Parameter::HighCutEnabled:
     case Parameter::LateDiffuseEnabled:
     case Parameter::EqLowShelfEnabled:
     case Parameter::EqHighShelfEnabled:
@@ -89,9 +89,9 @@ inline double ScaleParam(double val, int index)
     case Parameter::SeedPostDiffusion:
         return (int)std::floor(val * 999.999);
 
-    case Parameter::HighCut:
-        return 20 + Utils::Resp4oct(val) * 980;
     case Parameter::LowCut:
+        return 20 + Utils::Resp4oct(val) * 980;
+    case Parameter::HighCut:
         return 400 + Utils::Resp4oct(val) * 19600;
     
     case Parameter::DryOut:
@@ -99,12 +99,12 @@ inline double ScaleParam(double val, int index)
     case Parameter::LateOut:
         return -30 + val * 30;
     
-    case Parameter::TapDensity:
-        return (int)Utils::Resp2dec(val) * 100;
+    case Parameter::TapCount:
+        return (int)(1 + val * 255);
     case Parameter::TapPredelay:
-        return Utils::Resp2dec(val) * 500;
+        return Utils::Resp1dec(val) * 500;
     case Parameter::TapLength:
-        return Utils::Resp2dec(val) * 1000;
+        return 10 + val * 990;
     
     case Parameter::EarlyDiffuseCount:
         return (int)(1 + val * 7.999);
@@ -132,9 +132,9 @@ inline double ScaleParam(double val, int index)
     case Parameter::LateLineDecay:
         return 0.05 + Utils::Resp3dec(val) * 59.95;
     case Parameter::LateLineModRate:
-        return val * 2.5;
+        return Utils::Resp2dec(val) * 5;
     case Parameter::LateDiffuseModRate:
-        return val * 2.5;
+        return Utils::Resp2dec(val) * 5;
 
     case Parameter::EqLowFreq:
         return 20 + Utils::Resp3oct(val) * 980;
@@ -181,8 +181,8 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
         sprintf(tmp, "%03d", (int)s);
         return juce::String(tmp);
 
-    case Parameter::HighCut:
     case Parameter::LowCut:
+    case Parameter::HighCut:
     case Parameter::EqLowFreq:
     case Parameter::EqHighFreq:
     case Parameter::EqCutoff:
@@ -193,7 +193,7 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
     case Parameter::LateOut:
         return s <= -30 ? "Muted" : juce::String(s, 1) + " dB";
 
-    case Parameter::TapDensity:
+    case Parameter::TapCount:
     case Parameter::EarlyDiffuseCount:
     case Parameter::LateLineCount:
     case Parameter::LateDiffuseCount:
@@ -207,7 +207,12 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
         return juce::String((int)s) + " ms";
 
     case Parameter::LateLineDecay:
-        return juce::String(s, 1) + " sec";
+        if (s < 1)
+            return juce::String((int)(s * 1000)) + " ms";
+        else if (s < 10)
+            return juce::String(s, 2) + " sec";
+        else
+            return juce::String(s, 1) + " sec";
 
     case Parameter::LateMode:
         return s == 1 ? "Pre" : "Post";
@@ -215,12 +220,12 @@ inline juce::String FormatParameter(float val, int maxLen, int paramId)
     case Parameter::EarlyDiffuseModAmount:
     case Parameter::LateLineModAmount:
     case Parameter::LateDiffuseModAmount:
-        return juce::String(s, 2) + " ms";
+        return juce::String((int)(val * 100)) + " %";
     
     case Parameter::EarlyDiffuseModRate:
     case Parameter::LateLineModRate:
     case Parameter::LateDiffuseModRate:
-        return juce::String(val * 100, 1) + " Hz";
+        return juce::String(s, 2) + " Hz";
 
     case Parameter::EqLowGain:
     case Parameter::EqHighGain:

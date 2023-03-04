@@ -81,7 +81,7 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     i = 5;  knobs[i].setBounds(x0 + 2*w, y1, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::LateOut);
 
     x0 = Panel1x + PanelPadding;
-    i = 6;  knobs[i].setBounds(x0 + 0*w, y0, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::TapDensity);
+    i = 6;  knobs[i].setBounds(x0 + 0*w, y0, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::TapCount);
     i = 7;  knobs[i].setBounds(x0 + 1*w, y0, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::TapDecay);
     i = 8;  knobs[i].setBounds(x0 + 0*w, y1, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::TapPredelay);
     i = 9;  knobs[i].setBounds(x0 + 1*w, y1, w, h);     addAndMakeVisible(knobs[i]);   attachParam(&knobs[i], Parameter::TapLength);
@@ -139,9 +139,9 @@ CloudSeedXTAudioProcessorEditor::CloudSeedXTAudioProcessorEditor (CloudSeedXTAud
     spinToggleButtons[0].setBounds(Panel0x + PanelPadding + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[0], Parameter::Interpolation);
     spinToggleButtons[1].setBounds(Panel0x + PanelPadding + w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[1], Parameter::HighCutEnabled);
+    attachParam(&spinToggleButtons[1], Parameter::LowCutEnabled);
     spinToggleButtons[2].setBounds(Panel0x + PanelPadding + 2*w + 10, sy, sw, sh);
-    attachParam(&spinToggleButtons[2], Parameter::LowCutEnabled);
+    attachParam(&spinToggleButtons[2], Parameter::HighCutEnabled);
 
     spinToggleButtons[3].setBounds(Panel2x + PanelPadding + 0 * w + 10, sy, sw, sh);
     attachParam(&spinToggleButtons[3], Parameter::EarlyDiffuseEnabled);

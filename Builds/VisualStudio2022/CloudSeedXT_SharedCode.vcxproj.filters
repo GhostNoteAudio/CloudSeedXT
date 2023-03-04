@@ -5,6 +5,9 @@
     <Filter Include="CloudSeedXT\Binary Data">
       <UniqueIdentifier>{03A16D17-0EAB-0453-8941-CD56F40B95FB}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CloudSeedXT\Source\DSP">
+      <UniqueIdentifier>{FE590B1D-119E-FF31-7310-B66AC17BC295}</UniqueIdentifier>
+    </Filter>
     <Filter Include="CloudSeedXT\Source">
       <UniqueIdentifier>{7F5443A1-9CD5-DF48-DEFE-403EB49C1B83}</UniqueIdentifier>
     </Filter>
@@ -589,11 +592,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\RandomBuffer.cpp">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClCompile Include="..\..\Source\DSP\Biquad.cpp">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\Source\Biquad.cpp">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClCompile Include="..\..\Source\DSP\RandomBuffer.cpp">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClCompile>
     <ClCompile Include="..\..\Source\Parameters.cpp">
       <Filter>CloudSeedXT\Source</Filter>
@@ -2937,41 +2940,44 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\LcgRandom.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\AllpassDiffuser.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\RandomBuffer.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\Biquad.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Hp1.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\DelayLine.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Lp1.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\Hp1.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\AllpassDiffuser.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\LcgRandom.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Biquad.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\Lp1.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\DelayLine.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\ModulatedAllpass.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ModulatedAllpass.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\ModulatedDelay.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ModulatedDelay.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\MultitapDiffuser.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\MultitapDiffuser.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\RandomBuffer.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ReverbChannel.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\ReverbChannel.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\ReverbController.h">
-      <Filter>CloudSeedXT\Source</Filter>
+    <ClInclude Include="..\..\Source\DSP\ReverbController.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DSP\Utils.h">
+      <Filter>CloudSeedXT\Source\DSP</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\InputDialog.h">
       <Filter>CloudSeedXT\Source</Filter>
@@ -2989,9 +2995,6 @@
       <Filter>CloudSeedXT\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Spinner.h">
-      <Filter>CloudSeedXT\Source</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\Source\Utils.h">
       <Filter>CloudSeedXT\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\TrialMode.h">

@@ -139,8 +139,8 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\Source\RandomBuffer.cpp"/>
-    <ClCompile Include="..\..\Source\Biquad.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\Biquad.cpp"/>
+    <ClCompile Include="..\..\Source\DSP\RandomBuffer.cpp"/>
     <ClCompile Include="..\..\Source\Parameters.cpp"/>
     <ClCompile Include="..\..\Source\PluginProcessor.cpp"/>
     <ClCompile Include="..\..\Source\PluginEditor.cpp"/>
@@ -2318,25 +2318,25 @@
     <ClCompile Include="..\..\JuceLibraryCode\include_juce_gui_extra.cpp"/>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\Source\LcgRandom.h"/>
-    <ClInclude Include="..\..\Source\RandomBuffer.h"/>
-    <ClInclude Include="..\..\Source\Hp1.h"/>
-    <ClInclude Include="..\..\Source\Lp1.h"/>
-    <ClInclude Include="..\..\Source\AllpassDiffuser.h"/>
-    <ClInclude Include="..\..\Source\Biquad.h"/>
-    <ClInclude Include="..\..\Source\DelayLine.h"/>
-    <ClInclude Include="..\..\Source\ModulatedAllpass.h"/>
-    <ClInclude Include="..\..\Source\ModulatedDelay.h"/>
-    <ClInclude Include="..\..\Source\MultitapDiffuser.h"/>
-    <ClInclude Include="..\..\Source\ReverbChannel.h"/>
-    <ClInclude Include="..\..\Source\ReverbController.h"/>
+    <ClInclude Include="..\..\Source\DSP\AllpassDiffuser.h"/>
+    <ClInclude Include="..\..\Source\DSP\Biquad.h"/>
+    <ClInclude Include="..\..\Source\DSP\DelayLine.h"/>
+    <ClInclude Include="..\..\Source\DSP\Hp1.h"/>
+    <ClInclude Include="..\..\Source\DSP\LcgRandom.h"/>
+    <ClInclude Include="..\..\Source\DSP\Lp1.h"/>
+    <ClInclude Include="..\..\Source\DSP\ModulatedAllpass.h"/>
+    <ClInclude Include="..\..\Source\DSP\ModulatedDelay.h"/>
+    <ClInclude Include="..\..\Source\DSP\MultitapDiffuser.h"/>
+    <ClInclude Include="..\..\Source\DSP\RandomBuffer.h"/>
+    <ClInclude Include="..\..\Source\DSP\ReverbChannel.h"/>
+    <ClInclude Include="..\..\Source\DSP\ReverbController.h"/>
+    <ClInclude Include="..\..\Source\DSP\Utils.h"/>
     <ClInclude Include="..\..\Source\InputDialog.h"/>
     <ClInclude Include="..\..\Source\RoundedPanel.h"/>
     <ClInclude Include="..\..\Source\Presets.h"/>
     <ClInclude Include="..\..\Source\SpinToggle.h"/>
     <ClInclude Include="..\..\Source\Stylers.h"/>
     <ClInclude Include="..\..\Source\Spinner.h"/>
-    <ClInclude Include="..\..\Source\Utils.h"/>
     <ClInclude Include="..\..\Source\TrialMode.h"/>
     <ClInclude Include="..\..\Source\AboutDialog.h"/>
     <ClInclude Include="..\..\Source\Authentication.h"/>
