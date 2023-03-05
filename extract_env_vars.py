@@ -9,7 +9,7 @@ with open('env.txt', 'w') as f:
     f.write(f"COMPANY_NAME={root.attrib['companyName']}\n")
     f.write(f"COMPANY_WEBSITE={root.attrib['companyWebsite']}\n")
     f.write(f"VS_BUILD_DIR=./{root.find('EXPORTFORMATS').find('VS2022').attrib['targetFolder']}\n")
-    f.write(f"{root.attrib['userNotes']}\n")
+    f.write(f"{root.attrib['userNotes'].replace('\\', '\\\\')}\n")
 
 
 with open('env.txt', 'r') as f:
