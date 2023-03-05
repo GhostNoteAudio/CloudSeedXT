@@ -62,12 +62,6 @@ static const juce::ReferenceCountedObjectPtr<juce::Typeface> getTypefaceLight()
 	return juce::Typeface::createSystemTypefaceFor(BinaryData::OpenSansLight_ttf, BinaryData::OpenSansLight_ttfSize);
 }
 
-static const juce::ReferenceCountedObjectPtr<juce::Typeface> getTypefaceRoboto()
-{
-	return juce::Typeface::createSystemTypefaceFor(BinaryData::RobotoThin_ttf, BinaryData::RobotoThin_ttfSize);
-}
-
-
 static inline juce::Font getFontSemibold(float size)
 {
 	auto ff = juce::Font(getTypefaceSemibold());
@@ -85,13 +79,6 @@ static inline juce::Font getFontRegular(float size)
 static inline juce::Font getFontLight(float size)
 {
 	auto ff = juce::Font(getTypefaceLight());
-	ff.setHeight(size);
-	return ff;
-}
-
-static inline juce::Font getFontRoboto(float size)
-{
-	auto ff = juce::Font(getTypefaceRoboto());
 	ff.setHeight(size);
 	return ff;
 }

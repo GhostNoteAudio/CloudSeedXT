@@ -11,7 +11,6 @@
     <GROUP id="{1E8DD92F-7C83-43D0-2970-4C9E5B6221C5}" name="Binary Data">
       <FILE id="xvCMWW" name="logo.svg" compile="0" resource="1" file="logo.svg"/>
       <FILE id="DT24Fc" name="logo.png" compile="0" resource="1" file="logo.png"/>
-      <FILE id="yqjrZC" name="Roboto-Thin.ttf" compile="0" resource="1" file="Roboto/Roboto-Thin.ttf"/>
       <FILE id="BAR32h" name="OpenSans-Light.ttf" compile="0" resource="1"
             file="OpenSans/OpenSans-Light.ttf"/>
       <FILE id="Y6vEuW" name="OpenSans-Medium.ttf" compile="0" resource="1"
@@ -20,28 +19,6 @@
             file="OpenSans/OpenSans-Regular.ttf"/>
       <FILE id="E9SQz7" name="OpenSans-SemiBold.ttf" compile="0" resource="1"
             file="OpenSans/OpenSans-SemiBold.ttf"/>
-      <FILE id="B0iOnH" name="TitilliumWeb-Black.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-Black.ttf"/>
-      <FILE id="TFhDoP" name="TitilliumWeb-Bold.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-Bold.ttf"/>
-      <FILE id="nswfb4" name="TitilliumWeb-BoldItalic.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-BoldItalic.ttf"/>
-      <FILE id="QP6Usa" name="TitilliumWeb-ExtraLight.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-ExtraLight.ttf"/>
-      <FILE id="R0rdJQ" name="TitilliumWeb-ExtraLightItalic.ttf" compile="0"
-            resource="1" file="Titillium_Web/TitilliumWeb-ExtraLightItalic.ttf"/>
-      <FILE id="Liv20q" name="TitilliumWeb-Italic.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-Italic.ttf"/>
-      <FILE id="eItg5m" name="TitilliumWeb-Light.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-Light.ttf"/>
-      <FILE id="oFRbIo" name="TitilliumWeb-LightItalic.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-LightItalic.ttf"/>
-      <FILE id="kOJQ41" name="TitilliumWeb-Regular.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-Regular.ttf"/>
-      <FILE id="t3A5q9" name="TitilliumWeb-SemiBold.ttf" compile="0" resource="1"
-            file="Titillium_Web/TitilliumWeb-SemiBold.ttf"/>
-      <FILE id="FqJcIz" name="TitilliumWeb-SemiBoldItalic.ttf" compile="0"
-            resource="1" file="Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf"/>
     </GROUP>
     <GROUP id="{EB45CFC1-16D6-A877-5A89-0D37B54FF64B}" name="Source">
       <GROUP id="{0E0A2AE3-5CC3-FF45-82F1-96D1D40278AF}" name="DSP">

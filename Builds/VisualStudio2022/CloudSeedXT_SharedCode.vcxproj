@@ -3256,22 +3256,10 @@
   <ItemGroup>
     <None Include="..\..\logo.svg"/>
     <None Include="..\..\logo.png"/>
-    <None Include="..\..\Roboto\Roboto-Thin.ttf"/>
     <None Include="..\..\OpenSans\OpenSans-Light.ttf"/>
     <None Include="..\..\OpenSans\OpenSans-Medium.ttf"/>
     <None Include="..\..\OpenSans\OpenSans-Regular.ttf"/>
     <None Include="..\..\OpenSans\OpenSans-SemiBold.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Black.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Bold.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-BoldItalic.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-ExtraLight.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-ExtraLightItalic.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Italic.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Light.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-LightItalic.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Regular.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-SemiBold.ttf"/>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-SemiBoldItalic.ttf"/>
     <None Include="..\..\..\..\..\Dev\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt"/>
     <None Include="..\..\..\..\..\Dev\JUCE\modules\juce_audio_devices\native\oboe\README.md"/>
     <None Include="..\..\..\..\..\Dev\JUCE\modules\juce_audio_formats\codecs\flac\Flac Licence.txt"/>

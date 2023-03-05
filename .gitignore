@@ -33,9 +33,9 @@ _ReSharper*/
 packages*/
 [Tt]est[Rr]esult*
 Build/*
-Builds/*
 Releases/*
 .vs/*
+**/.vs/*
 **/.DS_Store
 !VC_redist.x64.exe
 env.txt

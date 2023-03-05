@@ -76,7 +76,6 @@
 		03604F6191AE4E16280D0271 /* ReverbChannel.h */ /* ReverbChannel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ReverbChannel.h; path = ../../Source/DSP/ReverbChannel.h; sourceTree = SOURCE_ROOT; };
 		0473ECE1BCE5C60FD588387A /* include_juce_events.mm */ /* include_juce_events.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_events.mm; path = ../../JuceLibraryCode/include_juce_events.mm; sourceTree = SOURCE_ROOT; };
 		07B30C8BEDED7D3E7885777E /* Authentication.h */ /* Authentication.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Authentication.h; path = ../../Source/Authentication.h; sourceTree = SOURCE_ROOT; };
-		0808AB64094D33EF34D03C06 /* TitilliumWeb-Light.ttf */ /* TitilliumWeb-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Light.ttf"; path = "../../Titillium_Web/TitilliumWeb-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		08C604A02360C586685D139B /* InputDialog.h */ /* InputDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = InputDialog.h; path = ../../Source/InputDialog.h; sourceTree = SOURCE_ROOT; };
 		0970E13E7E9A638FDAC28644 /* WebKit.framework */ /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		0A5FC5218133129DD0C5A47B /* OpenSans-Medium.ttf */ /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "OpenSans-Medium.ttf"; path = "../../OpenSans/OpenSans-Medium.ttf"; sourceTree = SOURCE_ROOT; };
@@ -84,13 +83,9 @@
 		0C3A5D3C2E5CB010D515F62B /* include_juce_audio_plugin_client_VST3.cpp */ /* include_juce_audio_plugin_client_VST3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_VST3.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp; sourceTree = SOURCE_ROOT; };
 		0CAAA7584A1EBEB53AD95AF1 /* AudioToolbox.framework */ /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		0D46CCE29195F6CBADC4AA03 /* Meter.h */ /* Meter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Meter.h; path = ../../Source/Meter.h; sourceTree = SOURCE_ROOT; };
-		0F26F83965F29A63948BBB55 /* TitilliumWeb-Black.ttf */ /* TitilliumWeb-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Black.ttf"; path = "../../Titillium_Web/TitilliumWeb-Black.ttf"; sourceTree = SOURCE_ROOT; };
 		117C3C22DD060AF4EEE48FFD /* Info-VST3.plist */ /* Info-VST3.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3.plist"; path = "Info-VST3.plist"; sourceTree = SOURCE_ROOT; };
 		14EEDE6580EDE0527153BEAB /* include_juce_audio_processors_ara.cpp */ /* include_juce_audio_processors_ara.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_ara.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_ara.cpp; sourceTree = SOURCE_ROOT; };
-		16D696225FD67910325A7FA0 /* TitilliumWeb-SemiBoldItalic.ttf */ /* TitilliumWeb-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-SemiBoldItalic.ttf"; path = "../../Titillium_Web/TitilliumWeb-SemiBoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		1C00EAA24311AF2754BA49A6 /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
-		1E6AC42B7665770DF79574DB /* TitilliumWeb-ExtraLight.ttf */ /* TitilliumWeb-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-ExtraLight.ttf"; path = "../../Titillium_Web/TitilliumWeb-ExtraLight.ttf"; sourceTree = SOURCE_ROOT; };
-		22877538D3205FAA76272C4D /* TitilliumWeb-LightItalic.ttf */ /* TitilliumWeb-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-LightItalic.ttf"; path = "../../Titillium_Web/TitilliumWeb-LightItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		23903FB154D67ECDA471EADA /* PluginEditor.h */ /* PluginEditor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginEditor.h; path = ../../Source/PluginEditor.h; sourceTree = SOURCE_ROOT; };
 		24A72A418FE5A2661114D539 /* Foundation.framework */ /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		25852E97BD4C8C51BF26781E /* ModulatedDelay.h */ /* ModulatedDelay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ModulatedDelay.h; path = ../../Source/DSP/ModulatedDelay.h; sourceTree = SOURCE_ROOT; };
@@ -98,7 +93,6 @@
 		27661AB0FF0B87E1BD7A8057 /* Standalone Plugin */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CloudSeedXT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		290DD6FECCCBC4C470B4B2B7 /* juce_core */ /* juce_core */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_core; path = "~/JUCE/modules/juce_core"; sourceTree = "<absolute>"; };
 		2E105FD824684EB6FD5E146B /* include_juce_audio_devices.mm */ /* include_juce_audio_devices.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_devices.mm; path = ../../JuceLibraryCode/include_juce_audio_devices.mm; sourceTree = SOURCE_ROOT; };
-		32065CD9870A5CF2CF96A206 /* TitilliumWeb-BoldItalic.ttf */ /* TitilliumWeb-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-BoldItalic.ttf"; path = "../../Titillium_Web/TitilliumWeb-BoldItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		3329C1C86F4F9258E8C76144 /* PluginProcessor.h */ /* PluginProcessor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = PluginProcessor.h; path = ../../Source/PluginProcessor.h; sourceTree = SOURCE_ROOT; };
 		3AE568124B861A8E26138A7E /* juce_data_structures */ /* juce_data_structures */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_data_structures; path = "~/JUCE/modules/juce_data_structures"; sourceTree = "<absolute>"; };
 		3BD673CC0223F33CEC34124B /* VST3 */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudSeedXT.vst3; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,7 +110,6 @@
 		5F0F5FA7AA1AFF376B2160B2 /* LcgRandom.h */ /* LcgRandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = LcgRandom.h; path = ../../Source/DSP/LcgRandom.h; sourceTree = SOURCE_ROOT; };
 		60749DB5B63F7E9F4F86C7B4 /* juce_audio_processors */ /* juce_audio_processors */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_processors; path = "~/JUCE/modules/juce_audio_processors"; sourceTree = "<absolute>"; };
 		62F6B9BED4DCE522C34E0392 /* include_juce_data_structures.mm */ /* include_juce_data_structures.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_data_structures.mm; path = ../../JuceLibraryCode/include_juce_data_structures.mm; sourceTree = SOURCE_ROOT; };
-		656C0E42A87F5E2429279C7D /* TitilliumWeb-Italic.ttf */ /* TitilliumWeb-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Italic.ttf"; path = "../../Titillium_Web/TitilliumWeb-Italic.ttf"; sourceTree = SOURCE_ROOT; };
 		664A26639DC4E9BF748A06A7 /* Info-Standalone_Plugin.plist */ /* Info-Standalone_Plugin.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-Standalone_Plugin.plist"; path = "Info-Standalone_Plugin.plist"; sourceTree = SOURCE_ROOT; };
 		699BBAB2835544B058BC56F6 /* Parameters.h */ /* Parameters.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Parameters.h; path = ../../Source/Parameters.h; sourceTree = SOURCE_ROOT; };
 		6A9390B6A00F80CD48AB0C53 /* Biquad.h */ /* Biquad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Biquad.h; path = ../../Source/DSP/Biquad.h; sourceTree = SOURCE_ROOT; };
@@ -133,7 +126,6 @@
 		7CCD6200F9B61522164FDBDE /* include_juce_audio_basics.mm */ /* include_juce_audio_basics.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_basics.mm; path = ../../JuceLibraryCode/include_juce_audio_basics.mm; sourceTree = SOURCE_ROOT; };
 		7EC6659DC9FE64D8681B4271 /* AllpassDiffuser.h */ /* AllpassDiffuser.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AllpassDiffuser.h; path = ../../Source/DSP/AllpassDiffuser.h; sourceTree = SOURCE_ROOT; };
 		81B88E09031F8950BFE93B0B /* PluginEditor.cpp */ /* PluginEditor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = PluginEditor.cpp; path = ../../Source/PluginEditor.cpp; sourceTree = SOURCE_ROOT; };
-		81D3874EA7BCA2C11DD20955 /* Roboto-Thin.ttf */ /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "Roboto-Thin.ttf"; path = "../../Roboto/Roboto-Thin.ttf"; sourceTree = SOURCE_ROOT; };
 		83C0E0C376872B3B876902E6 /* juce_audio_utils */ /* juce_audio_utils */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_utils; path = "~/JUCE/modules/juce_audio_utils"; sourceTree = "<absolute>"; };
 		83CA3E946980CE8BF5D52510 /* include_juce_audio_plugin_client_AU_1.mm */ /* include_juce_audio_plugin_client_AU_1.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; name = include_juce_audio_plugin_client_AU_1.mm; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_AU_1.mm; sourceTree = SOURCE_ROOT; };
 		881738B3E6AB1FC71C64EA7D /* Utils.h */ /* Utils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Utils.h; path = ../../Source/DSP/Utils.h; sourceTree = SOURCE_ROOT; };
@@ -151,7 +143,6 @@
 		980731CFE8515A35941AC669 /* Parameters.cpp */ /* Parameters.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Parameters.cpp; path = ../../Source/Parameters.cpp; sourceTree = SOURCE_ROOT; };
 		98255DAA0DA08C6640D9CF9D /* juce_audio_basics */ /* juce_audio_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_audio_basics; path = "~/JUCE/modules/juce_audio_basics"; sourceTree = "<absolute>"; };
 		9D2C2214D52665E826CE4926 /* juce_cryptography */ /* juce_cryptography */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_cryptography; path = "~/JUCE/modules/juce_cryptography"; sourceTree = "<absolute>"; };
-		9FB88ABDF9BF4E13A3514A2F /* TitilliumWeb-Regular.ttf */ /* TitilliumWeb-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Regular.ttf"; path = "../../Titillium_Web/TitilliumWeb-Regular.ttf"; sourceTree = SOURCE_ROOT; };
 		A08DBDE02BF89E6805DDDAA5 /* ModalOverlay.h */ /* ModalOverlay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = ModalOverlay.h; path = ../../Source/ModalOverlay.h; sourceTree = SOURCE_ROOT; };
 		A45FD52B4456DF356D21E60D /* MultitapDelay.h */ /* MultitapDelay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MultitapDelay.h; path = ../../Source/DSP/MultitapDelay.h; sourceTree = SOURCE_ROOT; };
 		A750711155B0E4DD56D9CC32 /* Lp1.h */ /* Lp1.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Lp1.h; path = ../../Source/DSP/Lp1.h; sourceTree = SOURCE_ROOT; };
@@ -160,7 +151,6 @@
 		AF8FB5BD33B39F2582B2BF85 /* RandomBuffer.cpp */ /* RandomBuffer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = RandomBuffer.cpp; path = ../../Source/DSP/RandomBuffer.cpp; sourceTree = SOURCE_ROOT; };
 		B850E61475A11B2E66B4D74C /* Presets.h */ /* Presets.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Presets.h; path = ../../Source/Presets.h; sourceTree = SOURCE_ROOT; };
 		B86F014F3F431D11C463DFFC /* TrialMode.h */ /* TrialMode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = TrialMode.h; path = ../../Source/TrialMode.h; sourceTree = SOURCE_ROOT; };
-		BC2238D6322109475FF721D7 /* TitilliumWeb-Bold.ttf */ /* TitilliumWeb-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-Bold.ttf"; path = "../../Titillium_Web/TitilliumWeb-Bold.ttf"; sourceTree = SOURCE_ROOT; };
 		C219A2ADAA52ABEA733A7CFE /* juce_gui_extra */ /* juce_gui_extra */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_extra; path = "~/JUCE/modules/juce_gui_extra"; sourceTree = "<absolute>"; };
 		C3AF57417EE09327B2EF678B /* CoreMIDI.framework */ /* CoreMIDI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMIDI.framework; path = System/Library/Frameworks/CoreMIDI.framework; sourceTree = SDKROOT; };
 		CEEA430FB51F0F2BCF77F17F /* Biquad.cpp */ /* Biquad.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = Biquad.cpp; path = ../../Source/DSP/Biquad.cpp; sourceTree = SOURCE_ROOT; };
@@ -176,9 +166,7 @@
 		E5B22866CE699822964CDEE3 /* DiscRecording.framework */ /* DiscRecording.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = DiscRecording.framework; path = System/Library/Frameworks/DiscRecording.framework; sourceTree = SDKROOT; };
 		E8E004E5CB9DC1E8926EC904 /* Cocoa.framework */ /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		EA16AEF119B8ACA29C9127DC /* include_juce_audio_plugin_client_AU.r */ /* include_juce_audio_plugin_client_AU.r */ = {isa = PBXFileReference; lastKnownFileType = file.r; name = include_juce_audio_plugin_client_AU.r; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_AU.r; sourceTree = SOURCE_ROOT; };
-		EAA86ED89630837FD95949E3 /* TitilliumWeb-SemiBold.ttf */ /* TitilliumWeb-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-SemiBold.ttf"; path = "../../Titillium_Web/TitilliumWeb-SemiBold.ttf"; sourceTree = SOURCE_ROOT; };
 		EE134CF5CC02FB17C630DAB0 /* SpinToggle.h */ /* SpinToggle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SpinToggle.h; path = ../../Source/SpinToggle.h; sourceTree = SOURCE_ROOT; };
-		EEB639CDA2BE19BF2B189AA7 /* TitilliumWeb-ExtraLightItalic.ttf */ /* TitilliumWeb-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "TitilliumWeb-ExtraLightItalic.ttf"; path = "../../Titillium_Web/TitilliumWeb-ExtraLightItalic.ttf"; sourceTree = SOURCE_ROOT; };
 		EF2C00A935648D626AB15FED /* AboutDialog.h */ /* AboutDialog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = AboutDialog.h; path = ../../Source/AboutDialog.h; sourceTree = SOURCE_ROOT; };
 		EFC0CF77F04A15792A4BCB29 /* OpenSans-Light.ttf */ /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file.ttf; name = "OpenSans-Light.ttf"; path = "../../OpenSans/OpenSans-Light.ttf"; sourceTree = SOURCE_ROOT; };
 		F02D5593BC04F8FF443E203B /* IOKit.framework */ /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
@@ -388,22 +376,10 @@
 			children = (
 				DDE6CBDD71A639BDFB7224C0,
 				92173E23A5B1107608118FFB,
-				81D3874EA7BCA2C11DD20955,
 				EFC0CF77F04A15792A4BCB29,
 				0A5FC5218133129DD0C5A47B,
 				DC1E45FB31377CAABA74C0F4,
 				75BFDE2274ACC1F755951082,
-				0F26F83965F29A63948BBB55,
-				BC2238D6322109475FF721D7,
-				32065CD9870A5CF2CF96A206,
-				1E6AC42B7665770DF79574DB,
-				EEB639CDA2BE19BF2B189AA7,
-				656C0E42A87F5E2429279C7D,
-				0808AB64094D33EF34D03C06,
-				22877538D3205FAA76272C4D,
-				9FB88ABDF9BF4E13A3514A2F,
-				EAA86ED89630837FD95949E3,
-				16D696225FD67910325A7FA0,
 			);
 			name = "Binary Data";
 			sourceTree = "<group>";

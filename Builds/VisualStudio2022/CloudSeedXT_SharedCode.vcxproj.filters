@@ -5750,9 +5750,6 @@
     <None Include="..\..\logo.png">
       <Filter>CloudSeedXT\Binary Data</Filter>
     </None>
-    <None Include="..\..\Roboto\Roboto-Thin.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
     <None Include="..\..\OpenSans\OpenSans-Light.ttf">
       <Filter>CloudSeedXT\Binary Data</Filter>
     </None>
@@ -5763,39 +5760,6 @@
       <Filter>CloudSeedXT\Binary Data</Filter>
     </None>
     <None Include="..\..\OpenSans\OpenSans-SemiBold.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Black.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Bold.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-BoldItalic.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-ExtraLight.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-ExtraLightItalic.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Italic.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Light.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-LightItalic.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-Regular.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-SemiBold.ttf">
-      <Filter>CloudSeedXT\Binary Data</Filter>
-    </None>
-    <None Include="..\..\Titillium_Web\TitilliumWeb-SemiBoldItalic.ttf">
       <Filter>CloudSeedXT\Binary Data</Filter>
     </None>
     <None Include="..\..\..\..\..\Dev\JUCE\modules\juce_audio_devices\native\oboe\CMakeLists.txt">
