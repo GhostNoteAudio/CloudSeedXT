@@ -1,7 +1,6 @@
 import xml.etree.ElementTree as ET
 tree = ET.parse('CloudSeedXT.jucer')
 root = tree.getroot()
-user_note_data = root.attrib['userNotes'].replace('\\', '\\\\')
 
 with open('env.txt', 'w') as f:
     f.write(f"VERSION={root.attrib['version']}\n")
@@ -10,7 +9,7 @@ with open('env.txt', 'w') as f:
     f.write(f"COMPANY_NAME={root.attrib['companyName']}\n")
     f.write(f"COMPANY_WEBSITE={root.attrib['companyWebsite']}\n")
     f.write(f"VS_BUILD_DIR=./{root.find('EXPORTFORMATS').find('VS2022').attrib['targetFolder']}\n")
-    f.write(f"{user_note_data}\n")
+    f.write(f"{root.attrib['userNotes']}\n")
 
 
 with open('env.txt', 'r') as f:
