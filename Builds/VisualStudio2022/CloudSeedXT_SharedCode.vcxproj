@@ -2341,7 +2341,6 @@
     <ClInclude Include="..\..\Source\AboutDialog.h"/>
     <ClInclude Include="..\..\Source\Authentication.h"/>
     <ClInclude Include="..\..\Source\ModalOverlay.h"/>
-    <ClInclude Include="..\..\Source\Meter.h"/>
     <ClInclude Include="..\..\Source\Parameters.h"/>
     <ClInclude Include="..\..\Source\LayoutUtils.h"/>
     <ClInclude Include="..\..\Source\RotaryKnobDot.h"/>

@@ -68,17 +68,18 @@ public:
         bool isFreeware = Authentication::GetIsFreeware();
 
         pluginName.setFont(getFontLight(24));
-        pluginName.setText("Cloud Seed XT " + juce::String(JucePlugin_VersionString) + "\nDesigned by Ghost Note Audio", juce::NotificationType::sendNotificationAsync);
+        pluginName.setText(juce::String(JucePlugin_Name) + " " + juce::String(JucePlugin_VersionString) + "\nDesigned by " + juce::String(JucePlugin_Manufacturer),
+            juce::NotificationType::sendNotificationAsync);
         pluginName.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
         pluginName.setJustificationType(juce::Justification::centred);
         addAndMakeVisible(pluginName);
 
         webButton.setColour(juce::Label::ColourIds::textColourId, juce::Colours::white);
-        webButton.setText("http://ghostnoteaudio.uk");
+        webButton.setText(juce::String(JucePlugin_ManufacturerWebsite));
         webButton.setFont(getFontLight(24));
         addAndMakeVisible(webButton);
 
-        webButton.callback = []() {juce::URL("http://www.ghostnoteaudio.uk").launchInDefaultBrowser(); };
+        webButton.callback = []() {juce::URL(juce::String(JucePlugin_ManufacturerWebsite)).launchInDefaultBrowser(); };
 
         addAndMakeVisible(emailInput);
         emailInput.setEditable(!isFreeware);

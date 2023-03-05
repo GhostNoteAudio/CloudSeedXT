@@ -4,7 +4,6 @@
 #include <functional>
 #include "PluginProcessor.h"
 #include "RotaryKnobLive.h"
-#include "Meter.h"
 #include "LayoutUtils.h"
 #include "AboutDialog.h"
 #include "Spinner.h"

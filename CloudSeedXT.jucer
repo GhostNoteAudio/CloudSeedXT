@@ -54,7 +54,6 @@
       <FILE id="Vs3NM1" name="Authentication.h" compile="0" resource="0"
             file="Source/Authentication.h"/>
       <FILE id="ZYq0G4" name="ModalOverlay.h" compile="0" resource="0" file="Source/ModalOverlay.h"/>
-      <FILE id="BFSWNE" name="Meter.h" compile="0" resource="0" file="Source/Meter.h"/>
       <FILE id="T1l4lh" name="Parameters.cpp" compile="1" resource="0" file="Source/Parameters.cpp"/>
       <FILE id="qe56c9" name="Parameters.h" compile="0" resource="0" file="Source/Parameters.h"/>
       <FILE id="DlcZJG" name="LayoutUtils.h" compile="0" resource="0" file="Source/LayoutUtils.h"/>

@@ -21,7 +21,7 @@ public:
 	static inline juce::String GetAppdataDir()
 	{
 		auto userDataDir = juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory);
-		auto ghostNoteDir = userDataDir.getFullPathName() + juce::File::getSeparatorString() + "Ghost Note Audio";
+		auto ghostNoteDir = userDataDir.getFullPathName() + juce::File::getSeparatorString() + juce::String(JucePlugin_Manufacturer);
 
 		juce::File(ghostNoteDir).createDirectory();
 		return ghostNoteDir;
@@ -78,16 +78,16 @@ public:
 		arr.sort(true);
 		for (int i = 0; i < arr.size(); i++)
 			str += arr[i];
-		
-        auto res = juce::SHA256(str.getCharPointer()).toHexString();
-		return res.substring(res.length()-16).toUpperCase();
+
+		auto res = juce::SHA256(str.getCharPointer()).toHexString();
+		return res.substring(res.length() - 16).toUpperCase();
 	}
 
 	static inline juce::String OnlineValidation(juce::String email, juce::String key)
 	{
 		auto deviceId = GetDeviceId();
-		auto urlString = HttpValidationEndpoint + "/" + email + "/" + "Noise Invader 3" + "/" + key + "/" + deviceId;
-		
+		auto urlString = HttpValidationEndpoint + "/" + email + "/" + juce::String(JucePlugin_Name) + "/" + key + "/" + deviceId;
+
 		juce::URL url(urlString);
 		juce::StringPairArray responseHeaders;
 		int statusCode = 0;
@@ -124,7 +124,7 @@ public:
 		auto mixed = juce::SHA256(hashString.getCharPointer()).toHexString();
 		auto expectedKey = mixed.substring(mixed.length() - 16).toUpperCase();
 		auto providedKey = authData[1].replace("-", "").toUpperCase();
-		
+
 		auto onlineValidationResponse = OnlineValidation(authData[0], providedKey);
 
 		if (onlineValidationResponse == STATE_FAILED) // If we can't reach the service then fail permissively.

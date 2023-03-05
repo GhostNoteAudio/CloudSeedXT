@@ -3009,9 +3009,6 @@
     <ClInclude Include="..\..\Source\ModalOverlay.h">
       <Filter>CloudSeedXT\Source</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\Source\Meter.h">
-      <Filter>CloudSeedXT\Source</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\Source\Parameters.h">
       <Filter>CloudSeedXT\Source</Filter>
     </ClInclude>

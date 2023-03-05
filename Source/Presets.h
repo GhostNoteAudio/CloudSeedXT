@@ -21,7 +21,6 @@ namespace Presets
         auto presets = getPresets();
         juce::PopupMenu m;
         m.setLookAndFeel(&CustomLaf);
-        //juce::PopupMenu::ColourIds::backgroundColourId, juce::Colour::fromRGB(240, 240, 240)
         m.addItem(1, "Save Preset");
         m.addItem(2, "Delete Preset");
         m.addSeparator();
@@ -87,7 +86,6 @@ namespace Presets
     inline void savePreset(CloudSeedXTAudioProcessor* processor, juce::String presetName)
     {
         juce::MemoryBlock block;
-        //block.setSize(100000, true);
         processor->getStateInformation(block);
         auto size = block.getSize();
         auto filename = getPresetDir() + juce::File::getSeparatorChar() + presetName + ".xml";
@@ -113,8 +111,8 @@ namespace Presets
     {
         auto appData = juce::File::getSpecialLocation(juce::File::SpecialLocationType::userApplicationDataDirectory);
         auto path = appData.getFullPathName()
-            + juce::File::getSeparatorChar() + "Ghost Note Audio"
-            + juce::File::getSeparatorChar() + "CloudSeedXT";
+            + juce::File::getSeparatorChar() + juce::String(JucePlugin_Manufacturer)
+            + juce::File::getSeparatorChar() + juce::String(JucePlugin_Desc);
         return path;
     }
 

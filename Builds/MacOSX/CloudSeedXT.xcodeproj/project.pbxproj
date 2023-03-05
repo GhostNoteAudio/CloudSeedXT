@@ -82,7 +82,6 @@
 		0A753C2A32F46B96EB6E03D0 /* AU */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CloudSeedXT.component; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C3A5D3C2E5CB010D515F62B /* include_juce_audio_plugin_client_VST3.cpp */ /* include_juce_audio_plugin_client_VST3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_plugin_client_VST3.cpp; path = ../../JuceLibraryCode/include_juce_audio_plugin_client_VST3.cpp; sourceTree = SOURCE_ROOT; };
 		0CAAA7584A1EBEB53AD95AF1 /* AudioToolbox.framework */ /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		0D46CCE29195F6CBADC4AA03 /* Meter.h */ /* Meter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Meter.h; path = ../../Source/Meter.h; sourceTree = SOURCE_ROOT; };
 		117C3C22DD060AF4EEE48FFD /* Info-VST3.plist */ /* Info-VST3.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info-VST3.plist"; path = "Info-VST3.plist"; sourceTree = SOURCE_ROOT; };
 		14EEDE6580EDE0527153BEAB /* include_juce_audio_processors_ara.cpp */ /* include_juce_audio_processors_ara.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = include_juce_audio_processors_ara.cpp; path = ../../JuceLibraryCode/include_juce_audio_processors_ara.cpp; sourceTree = SOURCE_ROOT; };
 		1C00EAA24311AF2754BA49A6 /* juce_gui_basics */ /* juce_gui_basics */ = {isa = PBXFileReference; lastKnownFileType = folder; name = juce_gui_basics; path = "~/JUCE/modules/juce_gui_basics"; sourceTree = "<absolute>"; };
@@ -324,7 +323,6 @@
 				EF2C00A935648D626AB15FED,
 				07B30C8BEDED7D3E7885777E,
 				A08DBDE02BF89E6805DDDAA5,
-				0D46CCE29195F6CBADC4AA03,
 				980731CFE8515A35941AC669,
 				699BBAB2835544B058BC56F6,
 				F5DF467027F2F44DD05D6EF5,
