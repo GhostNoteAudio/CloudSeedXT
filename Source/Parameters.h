@@ -61,7 +61,6 @@ namespace Parameter
 
 extern const char* ParameterIds[Parameter::COUNT];
 extern const char* ParameterLabel[Parameter::COUNT];
-extern const char* ParameterSuffix[Parameter::COUNT];
 
 inline double ScaleParam(double val, int index)
 {

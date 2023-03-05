@@ -10,7 +10,7 @@
 #include "PluginEditor.h"
 #include "Authentication.h"
 
-juce::String Authentication::AuthFileName = "CloudSeedXT.auth";
+juce::String Authentication::AuthFileName = juce::String(JucePlugin_Desc) + ".auth";
 juce::String Authentication::AuthSalt = "";
 bool Authentication::isAuthenticatedCacheSet = false;
 bool Authentication::isAuthenticatedCacheValue = false;
@@ -35,7 +35,7 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(juce::
             ParameterLabel[i], // parameter name
             range, // min, max, delta
             0.0, // default value
-            ParameterSuffix[i], // label
+            "", // suffix
             juce::AudioProcessorParameter::genericParameter,
             [i](float value, int maxlen) { return FormatParameter(value, maxlen, i); } // formatter
         );
@@ -50,7 +50,7 @@ CloudSeedXTAudioProcessor::CloudSeedXTAudioProcessor() :
     AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)
         .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-    parameters(*this, nullptr, juce::Identifier("CloudSeedXT"), createParameterLayout(this)),
+    parameters(*this, nullptr, juce::Identifier(juce::String(JucePlugin_Desc)), createParameterLayout(this)),
     reverb(48000)
 {
     presetName = "-----";
