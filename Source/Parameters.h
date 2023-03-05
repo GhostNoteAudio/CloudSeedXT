@@ -109,7 +109,7 @@ inline double ScaleParam(double val, int index)
         return 10 + val * 990;
     
     case Parameter::EarlyDiffuseCount:
-        return (int)(1 + val * 7.999);
+        return (int)(1 + val * 11.999);
     case Parameter::EarlyDiffuseDelay:
         return 10 + val * 90;
     case Parameter::EarlyDiffuseModAmount:

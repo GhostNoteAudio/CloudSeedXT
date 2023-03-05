@@ -70,7 +70,6 @@ namespace Presets
         }
 
         processor->setStateInformation(block.begin(), block.getSize());
-        processor->setPresetName(presetName);
     }
 
     inline void deleteCurrentPreset(CloudSeedXTAudioProcessor* processor)

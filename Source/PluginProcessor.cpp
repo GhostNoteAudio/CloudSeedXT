@@ -46,7 +46,6 @@ juce::AudioProcessorValueTreeState::ParameterLayout createParameterLayout(juce::
     return layout;
 }
 
-
 CloudSeedXTAudioProcessor::CloudSeedXTAudioProcessor() : 
     AudioProcessor(BusesProperties()
         .withInput("Input", juce::AudioChannelSet::stereo(), true)
@@ -54,12 +53,13 @@ CloudSeedXTAudioProcessor::CloudSeedXTAudioProcessor() :
     parameters(*this, nullptr, juce::Identifier("CloudSeedXT"), createParameterLayout(this)),
     reverb(48000)
 {
-    presetName = "Default Preset";
-
+    presetName = "-----";
     for (int i = 0; i < Parameter::COUNT; i++)
     {
         parameterValueChanged(i, getParamByIdx(i));
     }
+
+    Presets::loadPreset(this, "Dark Plate");
 }
 
 CloudSeedXTAudioProcessor::~CloudSeedXTAudioProcessor()
@@ -143,7 +143,6 @@ void CloudSeedXTAudioProcessor::processBlock (juce::AudioBuffer<float>& buffer, 
     reverb.Process(inputL, inputR, outputL, outputR, bufSize);
 }
 
-//==============================================================================
 bool CloudSeedXTAudioProcessor::hasEditor() const
 {
     return true;
@@ -154,21 +153,30 @@ juce::AudioProcessorEditor* CloudSeedXTAudioProcessor::createEditor()
     return new CloudSeedXTAudioProcessorEditor(*this);
 }
 
-//==============================================================================
 void CloudSeedXTAudioProcessor::getStateInformation (juce::MemoryBlock& destData)
 {
     auto state = parameters.copyState();
     std::unique_ptr<juce::XmlElement> xml(state.createXml());
+    
+    auto presetName = new juce::XmlElement("PresetName");
+    presetName->addTextElement(getPresetName());
+    xml->addChildElement(presetName);
     copyXmlToBinary(*xml, destData);
 }
 
 void CloudSeedXTAudioProcessor::setStateInformation (const void* data, int sizeInBytes)
 {
     std::unique_ptr<juce::XmlElement> xmlState(getXmlFromBinary(data, sizeInBytes));
+    
+    auto presetNameElement = xmlState->getChildByName("PresetName");
+    auto presetName = presetNameElement->getAllSubText();
+    xmlState->removeChildElement(presetNameElement, true);
 
     if (xmlState.get() != nullptr)
         if (xmlState->hasTagName(parameters.state.getType()))
             parameters.replaceState(juce::ValueTree::fromXml(*xmlState));
+
+    setPresetName(presetName);
 }
 
 void CloudSeedXTAudioProcessor::parameterValueChanged(int idx, float value)
