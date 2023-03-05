@@ -38,6 +38,9 @@ Name: msvcinstall; Description: "Install Microsoft Visual C Runtime"; GroupDescr
 Source: "..\Builds\VisualStudio2022\x64\Release\VST3\{#ProjectName}.vst3"; DestDir: "{app}"; \
   Flags: ignoreversion recursesubdirs createallsubdirs; \
 
+Source: "..\Presets\*"; DestDir: "{userappdata}\Ghost Note Audio\CloudSeedXT\Presets"; \
+  Flags: recursesubdirs createallsubdirs; \
+
 Source: ".\VC_redist.x64.exe"; DestDir: "{tmp}"; \
   Flags: deleteafterinstall; Tasks: msvcinstall
 

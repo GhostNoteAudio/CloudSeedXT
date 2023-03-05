@@ -372,6 +372,7 @@ void CloudSeedXTAudioProcessorEditor::savePreset()
     {
         if (btnIndex == 0)
         {
+            this->audioProcessor.setPresetName(value);
             Presets::savePreset(&this->audioProcessor, value);
             reloadPresetName();
         }
