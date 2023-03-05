@@ -20,4 +20,4 @@
     hdiutil attach Packages.dmg
     sudo installer -package /Volumes/Packages\ 1.2.10/Install\ Packages.pkg -target /Applications 
     python patch_macos_packaging.py ${{VERSION}}
-    packagesbuild -v "./Packaging/Cloud Seed XT.pkgproj"
+    packagesbuild -v "./Packaging/Packaging.pkgproj"

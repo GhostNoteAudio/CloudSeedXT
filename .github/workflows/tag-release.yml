@@ -6,11 +6,11 @@ on:
       project_name:
         description: 'Project name'
         required: true
-        default: 'NoiseInvader3'
+        default: 'CloudSeedXT'
       version:
         description: 'Version Number'     
         required: true
-        default: '3.5.0'
+        default: '1.0.0'
 
 env:
   WIN_FILE: ${{github.event.inputs.project_name}}-v${{github.event.inputs.version}}-Setup.exe
